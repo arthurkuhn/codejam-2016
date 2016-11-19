@@ -9,6 +9,8 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+require("./models/movie.js");
+
 // configuration ===============================================================
 mongoose.connect(database.remoteUrl); 	// Connect to local MongoDB instance. A remoteUrl is also available (modulus.io)
 
@@ -33,11 +35,29 @@ app.get("/choose-likes"), function(req,res){
 }
 
 app.post("/postMovie",function(req,res){
-  if(!req.body) {
-        return res.send({"status": "error", "message": "missing a parameter"});
-    } else {
-        return res.send({"status": "OK", "message": ""});
-    }
+  if(!req.body){
+      return res.send({"status": "error", "message": "missing a parameter"});
+  }
+  var Movie = mongoose.model("Movie")
+  Movie.findOne({
+      Title: req.body.Title
+  }, function(err, docs) {
+      if (docs) {
+          res.send({"status": "error", "message": "This Movie Already Exists"});
+      } else {
+          var movie = new Movie(req.body);
+          movie.save(function(err, result) {
+              if (err) {
+                res.send({"status": "error", "message": "Could not save to DB"});
+                console.log(err);
+              }
+              if (result) {
+                  res.send({"status": "OK", "message": "  "});
+                  console.log("Movie saved successfully");
+              }
+          });
+      }
+  });
 });
 
 app.post("/user/:user/movies/set", function(req, res){
