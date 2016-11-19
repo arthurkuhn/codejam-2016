@@ -192,7 +192,7 @@ function renderGenreList(res, user){
     console.log(user.name);
     res.render('pages/selectGenres.ejs', {
         user: user,
-        genres: ["Action", "Adventure", "Comedy", "Animation",
+        genres: ["Action", "Adventure", "Animation",
         "Biography", "Comedy", "Crime", "Fantasy",
         "Game-Show", "History", "Horror", "Music", "Musical",
         "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",
