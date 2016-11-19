@@ -202,18 +202,18 @@ function renderMovieList(res, user){
 
             var ratings = [];
             var imdbRating = parseInt(movies[i].imdbRating);
-            var tomaRating = parseInt(movies[i].tomatoRating);
-            var tomaRating_user = parseInt(movies[i].tomatoUserRating);
+            //var tomaRating = parseInt(movies[i].tomatoRating);
+            //var tomaRating_user = parseInt(movies[i].tomatoUserRating);
 
             if(!isNaN(imdbRating)){
                 ratings.push(imdbRating);
             }
-            if(!isNaN(tomaRating)){
-                ratings.push(tomaRating);
-            }
-            if(!isNaN(tomaRating_user)){
-                ratings.push(tomaRating_user);
-            }
+            //if(!isNaN(tomaRating)){
+            //    ratings.push(tomaRating);
+            //}
+
+            //    ratings.push(tomaRating_user);
+            //}
             var average = 0;
             if(ratings.length > 0){
                 for(var r=0; r < ratings.length; r++){
@@ -224,7 +224,7 @@ function renderMovieList(res, user){
 
             var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
 
-            var score = genreScore + average+popularRating;
+            var score = genreScore + average + popularRating;
 
 
 
