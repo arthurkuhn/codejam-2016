@@ -38,7 +38,7 @@ app.post("/postMovie",function(req,res){
   res.sendStatus(200);
 });
 
-app.post("/user/:user/setMovies", function(req, res){
+app.post("/user/:user/movies/set", function(req, res){
     var name = req.params.user;
     var User = mongoose.model("Users");
 
@@ -58,7 +58,7 @@ app.post("/user/:user/setMovies", function(req, res){
     });
 });
 
-app.post("/user/:user/setGenres", function(req, res){
+app.post("/user/:user/genres/set", function(req, res){
     var name = req.params.user;
     var User = mongoose.model("Users");
 
@@ -77,7 +77,38 @@ app.post("/user/:user/setGenres", function(req, res){
     });
 
 });
-
+app.get("/user/:user/genres", function(req,res){
+    var name = req.param("user");
+    var User = mongoose.model("Users");
+    User.findOne({'name':name}, 'name movies genres', function(err, user){
+        if(!err){
+            if(user==null){
+                res.redirect("/");
+                return;
+            }else{
+                renderGenreList(res, user);
+            }
+        }else{
+            return console.error(err);
+        }
+    });
+});
+app.get("/user/:user/movies", function(req,res){
+    var name = req.param("user");
+    var User = mongoose.model("Users");
+    User.findOne({'name':name}, 'name movies genres', function(err, user){
+        if(!err){
+            if(user==null){
+                res.redirect("/");
+                return;
+            }else{
+                renderMovieList(res, user);
+            }
+        }else{
+            return console.error(err);
+        }
+    });
+});
 app.get("/openUser", function(req,res){
     var name = req.param("user");
 
@@ -89,15 +120,15 @@ app.get("/openUser", function(req,res){
                 var newUser = new User({name:name, movies:[], genres:[]});
                 newUser.save(function(err, newUser){
                     if(err) return console.error(err);
-                    renderGenreList(res, newUser);
+                    res.redirect("/user/"+name+"/genres");
                 });
 
             }else{
                 if(user.genres.length < 1){
-                    renderGenreList(res,user);
+                    res.redirect("/user/"+name+"/genres");
                 }else
                 if(user.movies.length < 5){
-                    renderMovieList(res, user);
+                    res.redirect("/user/"+name+"/movies");
                 }else{
                     res.render('pages/showUser.ejs', {
                         user: user
