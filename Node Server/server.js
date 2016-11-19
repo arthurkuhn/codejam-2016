@@ -38,21 +38,28 @@ app.post("/postMovie",function(req,res){
   res.sendStatus(200);
 });
 
+app.post("/setUserFilms", function(req, res){
+
+});
+
 app.get("/openUser", function(req,res){
     var name = req.param("user");
 
     var User = mongoose.model("Users");
 
-    User.findOne({'name':name}, 'name, movies', function(err, user){
+    User.findOne({'name':name}, 'name, movies, genres', function(err, user){
         if(!err){
             if(user==null){
-                var newUser = new User({name:name, movies:[]});
+                var newUser = new User({name:name, movies:[], genres:[]});
                 newUser.save(function(err, newUser){
                     if(err) return console.error(err);
-                    renderMovieList(res, newUser);
+                    renderGenreList(res, newUser);
                 });
 
             }else{
+                if(genres.length < 1){
+                    renderGenreList(res,user);
+                }else
                 if(user.movies.length < 5){
                     renderMovieList(res, user);
                 }else{
@@ -76,7 +83,8 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function(){
     var usersSchema = mongoose.Schema({
         name: String,
-        movies: [String]
+        movies: [String],
+        genres: [String]
     });
 
     mongoose.model('Users', usersSchema);
@@ -93,7 +101,16 @@ function renderMovieList(res, user){
             {title:"Game of thrones", img:"", id:""}]
     });
 }
-
+function renderGenreList(res, user){
+    res.render('pages/selectGenres.ejs', {
+        user: user,
+        genres: ["Action", "Adventure", "Comedy", "Animation",
+        "Biography", "Comedy", "Crime", "Fantasy",
+        "Game-Show", "History", "Horror", "Music", "Musical",
+        "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",
+        "Sitcom", "Sports", "Talk-Show", "Thriller", "War", "Western"]
+    });
+}
 // listen (start app with node server.js) ======================================
 app.listen(port);
 console.log("App listening on port " + port);
