@@ -39,7 +39,23 @@ app.post("/postMovie",function(req,res){
 });
 
 app.post("/user/:user/setMovies", function(req, res){
+    var name = req.params.user;
+    var User = mongoose.model("Users");
 
+    var movies = req.params.movies.split(" ");
+
+    User.findOne({'name':name}, 'movies', function(err,user){
+        user.movies = movies;
+        user.save(function(err, user){
+            if(err) return console.error(err);
+            if(movies < 1){
+                res.write("false");
+            }else{
+                res.write("true");
+            }
+
+        });
+    });
 });
 
 app.post("/user/:user/setGenres", function(req, res){
@@ -53,7 +69,9 @@ app.post("/user/:user/setGenres", function(req, res){
         user.save(function(err, user){
             if(err) return console.error(err);
             if(genres < 1){
-                res.write("Not")
+                res.write("false");
+            }else{
+                res.write("true");
             }
         });
     });
