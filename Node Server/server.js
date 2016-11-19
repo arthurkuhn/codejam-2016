@@ -100,7 +100,7 @@ app.post("/user/:user/genres/set", function(req, res){
 
 });
 app.get("/user/:user/genres", function(req,res){
-    var name = req.param("user");
+    var name = req.params.user
     var User = mongoose.model("Users");
     User.findOne({'name':name}, 'name movies genres', function(err, user){
         if(!err){
@@ -116,7 +116,7 @@ app.get("/user/:user/genres", function(req,res){
     });
 });
 app.get("/user/:user/movies", function(req,res){
-    var name = req.param("user");
+    var name = req.params.user;
     var User = mongoose.model("Users");
     User.findOne({'name':name}, 'name movies genres', function(err, user){
         if(!err){
@@ -131,8 +131,8 @@ app.get("/user/:user/movies", function(req,res){
         }
     });
 });
-app.get("/openUser", function(req,res){
-    var name = req.param("user");
+app.get("/user/:user", function(req,res){
+    var name = req.params.user;
 
     var User = mongoose.model("Users");
 
