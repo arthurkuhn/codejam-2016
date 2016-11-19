@@ -8,6 +8,9 @@ import csv
 import requests
 
 def exportShow(show):
+    
+    cleanShow(show)
+    
     #Send to DB
     addShowToDb(show)
     
@@ -33,12 +36,7 @@ def getRow(show):
     valuesToGet = ["Title","Plot","Metascore","imdbVotes","tomatoUserMeter","tomatoUserRating","tomatoRating","imdbRating"]
     row = []
     for id in valuesToGet:
-        val = show[id]
-        if(is_number(val)):
-            dat = cleanNumber(val)
-        else :
-            dat = val
-        row.append(dat)
+        row.append(show[id])
     return row
     
     
@@ -65,4 +63,9 @@ def cleanNumber(number):
         return ret
     except ValueError:
         return float(str)
-    
+
+def cleanShow(show):
+    for key in show:
+        if(is_number(show[key])):
+            c_num = cleanNumber(show[key])
+            show[key] = c_num
