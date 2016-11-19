@@ -47,11 +47,16 @@ app.get("/openUser", function(req,res){
     User.findOne({'name':name}, 'name, gender, age', function(err, user){
         if(!err){
             if(user==null){
-                res.render('pages/createUser.ejs', {
-                    name: req.param("user")
+                newUser = new User({name:name, movies:[null]});
+                newUser.save(function(err, newUser){
+                    if(err) return console.error(err);
+                    res.render('pages/selectMovies.ejs', {
+                        user: newUser
+                    });
                 });
+
             }else{
-                res.render('pages/showUser', {
+                res.render('pages/showUser.ejs', {
                     user: user
                 });
             }
@@ -70,8 +75,7 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function(){
     var usersSchema = mongoose.Schema({
         name: String,
-        age: Number,
-        gender: String
+        movies: [String]
     });
 
     mongoose.model('Users', usersSchema);
