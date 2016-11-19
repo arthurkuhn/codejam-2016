@@ -181,16 +181,33 @@ function renderMovieList(res, user){
         "tomatoUserMeter":1
     }},function(req,movies){
         for(var i=0; i < movies.length; i++){
-            var mGenres = movies[i].Genre.split(",").trim();
-            for(var k=0; j < user.genres; j++){
-                
+            var movieScore = 0;
+            var mGenres = movies[i].Genre.split(",");
+            for(var j=0; j < mGenres.length; j++) {
+                var mGenre = mGenres[j].trim().toLowerCase();
+                for (var k = 0; k < user.genres; k++) {
+                    var genre = user.genres[k];
+                    if(genre.toLowerCase() == mGenre){
+                        movieScore += 10;
+                    }
+                }
+            }
+            if(bestMovies.length < 20){
+                bestMovies.push({movie:movies[i], score:movieScore});
+            }else{
+                for(var j=0; j < bestMovies.length; j++){
+                    if(bestMovies[j].score < movieScore){
+                        bestMovies[j] = {movie:movies[i], score:movieScore};
+                        break;
+                    }
+                }
             }
         }
 
 
         res.render('pages/selectMovies.ejs', {
             user: user,
-            movieList: movies
+            movieList: bestMovies
         });
     });
 }
