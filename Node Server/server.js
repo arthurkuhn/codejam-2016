@@ -84,16 +84,16 @@ app.post("/user/:user/genres/set", function(req, res){
     var name = req.params.user;
     var User = mongoose.model("Users");
 
-    var genres = req.body.genres.split(" ");
+    var genres = req.body.genres.split(",");
 
     User.findOne({'name':name}, 'genres', function(err,user){
         user.genres = genres;
         user.save(function(err, user){
-            if(err) return console.error(err);
+            if(err) res.sendStatus(400);
             if(genres < 1){
-                res.write("false");
+                res.sendStatus(400);
             }else{
-                res.write("true");
+                res.sendStatus(200);
             }
         });
     });
@@ -178,6 +178,7 @@ function renderMovieList(res, user){
     var Movie = mongoose.model("Movie");
     var totalGenres = 22;
     var bestMovies = [];
+    var movieLimit = 40;
     Movie.find({},null,{sort:{
         "tomatoUserMeter":1
     }},function(req,movies){
@@ -197,17 +198,21 @@ function renderMovieList(res, user){
             }
 
             var prob = matchedGenres/mGenres.length;
-            var genreScore = prob*10;
+            var genreScore = prob*10-(user.genres.length-matchedGenres)*2;
 
             var ratings = [];
             var imdbRating = parseInt(movies[i].imdbRating);
             var tomaRating = parseInt(movies[i].tomatoRating);
+            var tomaRating_user = parseInt(movies[i].tomatoUserRating);
 
             if(!isNaN(imdbRating)){
                 ratings.push(imdbRating);
             }
             if(!isNaN(tomaRating)){
                 ratings.push(tomaRating);
+            }
+            if(!isNaN(tomaRating_user)){
+                ratings.push(tomaRating_user);
             }
             var average = 0;
             if(ratings.length > 0){
@@ -217,7 +222,11 @@ function renderMovieList(res, user){
                 average = average / ratings.length;
             }
 
-            var score = genreScore + average;
+            var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
+
+            var score = genreScore + average+popularRating;
+
+
 
             console.log(movies[i].Title+" "+score);
 
@@ -229,13 +238,13 @@ function renderMovieList(res, user){
                     if (bestMovies[j].score < score) {
                         bestMovies.splice(j, 0, {movie:movies[i], score:score});
                         inserted = true;
-                        while(bestMovies.length >20){
+                        while(bestMovies.length >movieLimit){
                             bestMovies.pop();
                         }
                         break;
                     }
                 }
-                if(!inserted && bestMovies.length < 20){
+                if(!inserted && bestMovies.length < movieLimit){
                     bestMovies.push({movie:movies[i], score:score});
                 }
             }
@@ -249,14 +258,29 @@ function renderMovieList(res, user){
     });
 }
 function renderGenreList(res, user){
-    console.log(user.name);
-    res.render('pages/selectGenres.ejs', {
-        user: user,
-        genres: ["Action", "Adventure", "Animation",
+    console.log(user.name)
+    var genres = ["Action", "Adventure", "Animation",
         "Biography", "Comedy", "Crime", "Fantasy",
         "Game-Show", "History", "Horror", "Music", "Musical",
         "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",
-        "Sitcom", "Sports", "Talk-Show", "Thriller", "War", "Western"]
+        "Sitcom", "Sports", "Talk-Show", "Thriller", "War", "Western"];
+    var checkedGenres = [];
+    for(var i=0; i < genres.length; i++){
+        var checked = false;
+        for(var j=0; j < user.genres.length; j ++){
+            console.log(user.genres[j].toLowerCase().trim()+" "+genres[i].toLowerCase().trim());
+            if(user.genres[j].toLowerCase().trim() == genres[i].toLowerCase().trim()) {
+                checked = true;
+                break;
+            }
+        }
+        checkedGenres.push({genre:genres[i], checked:checked});
+        console.log(i);
+    }
+    res.render('pages/selectGenres.ejs', {
+        user: user,
+        genres:checkedGenres
+
     });
 }
 // listen (start app with node server.js) ======================================
