@@ -1,14 +1,22 @@
-Welcome &nbsp;<%= user.name %>
+<% include ../partials/head %>
 
-<br />
+<div id="question" class="flexItem"> <%= user.name %>, what movies do you like? </div>
 
-Please select movies you like
 
-<ul id="movies">
-    <% for(var i=0; i < movieList.length; i++) { %>
-    <li class="movie">
-        <div class="name"><%= movieList[i].movie.Title %></div>
-        <img class="poster" src="<%= movieList[i].movie.Poster %>"></img>
-    </li>
-    <% }%>
-</ul>
+<form class="flexItem" id="movies">
+    <div id="movieList" class="flexItem">
+        <% for(var i=0; i < movieList.length; i++) { %>
+        <div class="movie flexItem">
+
+
+        <input type="checkbox" autocomplete="off"  id="<%= movieList[i].movie.Title %>" class="movieInput flexItem" name="<%= movieList[i].movie.Title %>">
+
+        <label class = "moviebtn flexItem" for="<%= movieList[i].movie.Title %>" >
+            <img class="poster" src="<%= movieList[i].movie.Poster %>"></img>
+        </label>
+
+        </div>
+        <% }%>
+    </div>
+    <input type="submit" value="Continue" id="enterBtn" class ="flexItem">
+</form>

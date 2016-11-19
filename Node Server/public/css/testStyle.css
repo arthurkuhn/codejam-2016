@@ -13,7 +13,6 @@ body{
     text-align:center;
     background-color:black;
 }
-
 textarea:focus, input:focus{
     outline: none;
 }
@@ -100,3 +99,31 @@ textarea:focus, input:focus{
     text-align:center;
     justify-content: center;
 }
+#movies{
+    text-align:center;
+    justify-content: center;
+    flex-flow: column;
+}
+#movieList{
+    flex-flow:row;
+}
+.movie{
+    margin:10px;
+}
+.poster{
+
+    width:150px;
+    height:220px;
+
+}
+.movieBtn{
+    border:1px solid gray;
+    opacity:0.5;
+}
+.movieInput{
+    display: none;
+}
+.movieInput:checked + .movieBtn{
+     border:1px solid white;
+    opacity:1;
+ }
