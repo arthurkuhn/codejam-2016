@@ -2,10 +2,12 @@
 import requests
 import json
 import exportHelper
+import importHelper
 
 
 def main():
-
+    
+    movieList = importHelper.fetchMovieList()
     #Pull Data
     title = "Ocean's Eleven"
     query = "http://www.omdbapi.com/?t=" + title + "&y=&plot=long&tomatoes=true&r=json"
