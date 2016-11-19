@@ -10,10 +10,14 @@ function submitGenre() {
   {
     if(genreInputs[i].checked == true)
     {
-      genreString += genreInputs[i].getAttribute("name") + ", ";
+      genreString += genreInputs[i].getAttribute("name") + ",";
     }
   }
  console.log(genreString);
+
+  $.post("/user/<%= user.name %>/genres/set", {genres:genreString}, function(data){
+
+  });
 
  return false;
 }
