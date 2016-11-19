@@ -39,7 +39,7 @@ textarea:focus, input:focus{
     font-size:60px;
     justify-content: center;
     text-align: center;
-    border-bottom:1px solid white;
+    border-bottom:1px solid gray;
     margin-top:20px;
     margin-bottom:20px;
 }
