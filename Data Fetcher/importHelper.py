@@ -7,7 +7,9 @@ Created on Sat Nov 19 11:27:28 2016
 import csv
 
 def fetchMovieList():
+    resultList = []
     with open('movieList.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in spamreader:
+            resultList.append(row)
             print(', '.join(row))
