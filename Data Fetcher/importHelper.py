@@ -13,3 +13,5 @@ def fetchMovieList():
         for row in spamreader:
             resultList.append(row)
             print(', '.join(row))
+
+    return ["The Gringe","The Shinning"]

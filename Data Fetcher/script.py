@@ -8,20 +8,24 @@ import importHelper
 def main():
     
     movieList = importHelper.fetchMovieList()
-    #Pull Data
-    title = "Ocean's Eleven"
-    query = "http://www.omdbapi.com/?t=" + title + "&y=&plot=long&tomatoes=true&r=json"
-    r = requests.get(query)
     
-    #print(r.content)
-    #print(r.status_code)
-    #print(r.content)
+    counter = 0
+    for movTitle in movieList:
+        #Pull Data
+        query = "http://www.omdbapi.com/?t=" + movTitle + "&y=&plot=long&tomatoes=true&r=json"
+        r = requests.get(query)
+        
+        show = json.loads(r.content.decode("utf-8") )
+        #print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
+        
+        
+        if 'Error' in show:
+            continue
     
-    show = json.loads(r.content.decode("utf-8") )
-    #print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
-
-    exportHelper.addShowToDb(show)
-    print("done")
+        exportHelper.exportShow(show)
+        counter+=1
+    
+    print("Imported: " + str(counter) + " shows")
 
 
 if __name__ == "__main__":
