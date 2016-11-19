@@ -73,6 +73,7 @@ textarea:focus, input:focus{
     color: #dddddd;
     cursor:pointer;
     border-radius:5px;
+    font-size:20px;
     border:1px solid transparent;
 
 }
@@ -103,9 +104,14 @@ textarea:focus, input:focus{
     text-align:center;
     justify-content: center;
     flex-flow: column;
+    width:100%;
 }
 #movieList{
+    flex-justify:center;
+    justify-content:center;
     flex-flow:row;
+    flex-wrap:wrap;
+    width:100%;
 }
 .movie{
     margin:10px;
