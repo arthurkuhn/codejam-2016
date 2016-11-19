@@ -64,6 +64,7 @@ textarea:focus, input:focus{
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .genreBtn{
