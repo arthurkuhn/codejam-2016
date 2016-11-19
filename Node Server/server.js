@@ -84,7 +84,7 @@ app.post("/user/:user/genres/set", function(req, res){
     var name = req.params.user;
     var User = mongoose.model("Users");
 
-    var genres = req.params.genres.split(" ");
+    var genres = req.body.genres.split(" ");
 
     User.findOne({'name':name}, 'genres', function(err,user){
         user.genres = genres;
