@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express(); 						// create our app w/ express
 var mongoose = require('mongoose'); 				// mongoose for mongodb
+mongoose.connect("mongodb://localhost/USERS");
 var port = process.env.PORT || 8080; 				// set the port
 //var database = require('./config/database'); 			// load the database config
 var morgan = require('morgan');
@@ -41,11 +42,44 @@ app.post("/postMovie",function(req,res){
 
 app.get("/openUser", function(req,res){
     //TODO check database for user
-    res.render('pages/createUser.ejs', {
-        name: req.param("user")
+    var name = req.param("user");
+
+    var User = mongoose.model("Users");
+
+    User.findOne({'name':name}, 'name, gender, age', function(err, user){
+        if(!err){
+            if(user==null){
+                res.render('pages/createUser.ejs', {
+                    name: req.param("user")
+                });
+            }else{
+                res.render('pages/showUser', {
+                    user: user
+                });
+            }
+        }else{
+
+        }
     });
+
+
     //for now, simply creates a new user
 });
+
+//verify mongodb connection
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function(){
+    var usersSchema = mongoose.Schema({
+        name: String,
+        age: Number,
+        gender: String
+    });
+
+    mongoose.model('Users', usersSchema);
+
+});
+
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
