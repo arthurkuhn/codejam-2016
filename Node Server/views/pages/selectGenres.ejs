@@ -1,0 +1,13 @@
+Welcome &nbsp;<%= user.name %>
+
+<br />
+
+Please select genres you like:
+
+<ul id="genres">
+    <% for(var i=0; i < genres.length; i++) { %>
+    <li class="genre">
+        <%= genres[i] %>
+    </li>
+    <% }%>
+</ul>
