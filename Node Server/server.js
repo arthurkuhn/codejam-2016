@@ -33,12 +33,19 @@ app.get("/choose-likes"), function(req,res){
   });
 }
 
-app.post("/postMovie",function(req,res)){
+app.post("/postMovie",function(req,res){
   console.log(req);
   console.log(res);
   res.sendStatus(200);
-}
+});
 
+app.get("/openUser", function(req,res){
+    //TODO check database for user
+    res.render('pages/createUser.ejs', {
+        name: req.param("user")
+    });
+    //for now, simply creates a new user
+});
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
