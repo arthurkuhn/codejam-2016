@@ -1,6 +1,15 @@
 <html lang="en">
 <head>
    <% include ../partials/head %>
+
+    <script>
+function enter(){
+    var name = document.getElementById("nameInput").value;
+    if(name.length > 0)
+        window.location = "/user/"+name;
+    return false;
+}
+    </script>
 </head>
 
 <body class="container">
@@ -8,20 +17,12 @@
     <% include ../partials/header %>
 </header>
 
-    <form id="nameForm" action="openUser">
+    <form id="nameForm"  onsubmit="return enter()" target="_self">
       <label>
         What is your name? <br />
       </label>
-        <input class="form-control" name="user" type="textfield" id="nameForm">
+        <input class="form-control" name="user" type="textfield" id="nameInput" />
         <input type="submit" value="Enter"/>
     </form>
-
-
-
-
-
-
 </body>
-
-
 </html>
