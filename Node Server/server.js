@@ -33,9 +33,11 @@ app.get("/choose-likes"), function(req,res){
 }
 
 app.post("/postMovie",function(req,res){
-  console.log(req);
-  console.log(res);
-  res.sendStatus(200);
+  if(!req.body) {
+        return res.send({"status": "error", "message": "missing a parameter"});
+    } else {
+        return res.send({"status": "OK", "message": ""});
+    }
 });
 
 app.post("/user/:user/setMovies", function(req, res){

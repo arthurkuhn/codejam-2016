@@ -5,6 +5,7 @@ Created on Sat Nov 19 11:05:18 2016
 @author: Arthur
 """
 import csv
+import requests
 
 def exportShow(show):
     #Send to DB
@@ -15,8 +16,10 @@ def exportShow(show):
     
 
 def addShowToDb(show):
-    mondbPutUrl = "http://localhost:3000/postMovie"
-    #r = requests.post(mondbPutUrl, data = show)
+    mondbPutUrl = "http://localhost:8080/postMovie"
+    r = requests.post(mondbPutUrl, data = show)
+    print(r.status_code)
+    print(r.content)
     
 def addShowToCsv(show):
     fileAddress = "test.csv"

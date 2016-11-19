@@ -20,7 +20,7 @@ def main():
     show = json.loads(r.content.decode("utf-8") )
     #print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
 
-    exportHelper.exportShow(show)
+    exportHelper.addShowToDb(show)
     print("done")
 
 
