@@ -5,9 +5,10 @@ Welcome &nbsp;<%= user.name %>
 Please select movies you like
 
 <ul id="movies">
+    <% for(var i=0; i < movieList.length; i++) { %>
     <li class="movie">
-        <div class="name"></div>
-        <img class="poster" src=""></img>
+        <div class="name"><%= movieList[i].title %></div>
+        <img class="poster" src="<%= movieList[i].img %>"></img>
     </li>
-
+    <% }%>
 </ul>
