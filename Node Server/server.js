@@ -57,7 +57,7 @@ app.get("/openUser", function(req,res){
                 });
 
             }else{
-                if(genres.length < 1){
+                if(user.genres.length < 1){
                     renderGenreList(res,user);
                 }else
                 if(user.movies.length < 5){
