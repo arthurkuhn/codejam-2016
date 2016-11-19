@@ -49,10 +49,10 @@ app.get("/openUser", function(req,res){
 
     var User = mongoose.model("Users");
 
-    User.findOne({'name':name}, 'name, gender, age', function(err, user){
+    User.findOne({'name':name}, 'name, movies', function(err, user){
         if(!err){
             if(user==null){
-                newUser = new User({name:name, movies:[null]});
+                newUser = new User({name:name, movies:[]});
                 newUser.save(function(err, newUser){
                     if(err) return console.error(err);
                     res.render('pages/selectMovies.ejs', {
@@ -61,9 +61,15 @@ app.get("/openUser", function(req,res){
                 });
 
             }else{
-                res.render('pages/showUser.ejs', {
-                    user: user
-                });
+                if(user.movies.length < 5){
+                    res.render('pages/selectMovies.ejs', {
+                        user: user
+                    });
+                }else{
+                    res.render('pages/showUser.ejs', {
+                        user: user
+                    });
+                }
             }
         }else{
 
