@@ -70,8 +70,7 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function(){
     var usersSchema = mongoose.Schema({
         name: String,
-        age: Number,
-        gender: String
+        movies: [String]
     });
 
     mongoose.model('Users', usersSchema);
