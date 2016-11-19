@@ -1,13 +1,21 @@
-Welcome &nbsp;<%= user.name %>
+  <% include ../partials/head %>
 
-<br />
+<div class = "container">
 
-Please select genres you like:
+<center><label> Welcome &nbsp;<%= user.name %> </label></center>
+<center><label> Please select genres you like: </label></center>
+<br><br>
 
-<ul id="genres">
+<div class="btn-group" data-toggle="buttons">
     <% for(var i=0; i < genres.length; i++) { %>
-    <li class="genre">
-        <%= genres[i] %>
-    </li>
+  <label class = "btn btn-primary" id="genres">
+    <input type="checkbox" autocomplete="off">
+       <%= genres[i] %>
+     </label>
+
     <% }%>
-</ul>
+</div>
+
+
+
+</div>
