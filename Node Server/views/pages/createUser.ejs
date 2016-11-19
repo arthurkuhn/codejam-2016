@@ -1,0 +1,18 @@
+Welcome <%= name %>
+
+<form action="createUser">
+        <div id="ageForm">
+            What is your age?
+            <br />
+            <input name="age" type="number"/>
+        </div>
+        <input type="button" value="continue" onclick="showGenderForm()" />
+
+        <!-- Set this form to not be visible until user sets age -->
+        <div ID="genderForm">
+            <input type="radio" name="gender" value="male"> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+        </div>
+        <input type="submit" value="finish" />
+
+    </form>
