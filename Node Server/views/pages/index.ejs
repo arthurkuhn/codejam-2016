@@ -1,11 +1,13 @@
-<html>
+<html lang="en">
 <head>
-    <title>Movie Recommendations App</title>
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+   <% include ../partials/head %>
 </head>
 
-<body>
+<body class="container">
+  <header>
+    <% include ../partials/header %>
+</header>
+
     <form id="nameForm" action="openUser">
         What is your name? <br />
         <input name="user" type="textfield">

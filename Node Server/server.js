@@ -22,8 +22,13 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 app.set('view engine', 'ejs');
 
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/public/index.html");
+// app.get("/", function(req, res) {
+//     res.sendFile(__dirname + "/public/index.html");
+// });
+
+// index page
+app.get('/', function(req, res) {
+    res.render('pages/index');
 });
 
 app.get("/choose-likes"), function(req,res){
@@ -44,10 +49,10 @@ app.get("/openUser", function(req,res){
 
     var User = mongoose.model("Users");
 
-    User.findOne({'name':name}, 'name, gender, age', function(err, user){
+    User.findOne({'name':name}, 'name, movies', function(err, user){
         if(!err){
             if(user==null){
-                newUser = new User({name:name, movies:[null]});
+                newUser = new User({name:name, movies:[]});
                 newUser.save(function(err, newUser){
                     if(err) return console.error(err);
                     res.render('pages/selectMovies.ejs', {
@@ -56,9 +61,15 @@ app.get("/openUser", function(req,res){
                 });
 
             }else{
-                res.render('pages/showUser.ejs', {
-                    user: user
-                });
+                if(user.movies.length < 5){
+                    res.render('pages/selectMovies.ejs', {
+                        user: user
+                    });
+                }else{
+                    res.render('pages/showUser.ejs', {
+                        user: user
+                    });
+                }
             }
         }else{
 
