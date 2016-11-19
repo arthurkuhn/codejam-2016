@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 require("./models/movie.js");
-
+require("./models/user.js");
 // configuration ===============================================================
 mongoose.connect(database.remoteUrl); 	// Connect to local MongoDB instance. A remoteUrl is also available (modulus.io)
 
@@ -170,25 +170,23 @@ app.get("/user/:user", function(req,res){
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function(){
-    var usersSchema = mongoose.Schema({
-        name: String,
-        movies: [String],
-        genres: [String]
-    });
-
-    mongoose.model('Users', usersSchema);
 
 });
 
 function renderMovieList(res, user){
     //TODO load top movies and pass them to view
-    res.render('pages/selectMovies.ejs', {
-        user: user,
-        movieList: [{title:"Band of Brothers", img:"https://images-na.ssl-images-amazon.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_.jpg", id:""},
-            {title:"Planet Earth", img:"https://images-na.ssl-images-amazon.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_.jpg", id:""},
-            {title:"Breaking bad", img:"https://images-na.ssl-images-amazon.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_.jpg", id:""},
-            {title:"Game of thrones", img:"", id:""}]
+    var Movie = mongoose.model("Movie");
+
+    Movie.find({},null,{limit:20, sort:{
+        "tomatoUserMeter":1
+    }},function(req,movies){
+        res.render('pages/selectMovies.ejs', {
+            user: user,
+            movieList: movies
+        });
     });
+
+
 }
 function renderGenreList(res, user){
     console.log(user.name);
