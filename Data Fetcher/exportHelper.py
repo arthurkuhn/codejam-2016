@@ -27,7 +27,7 @@ def addShowToCsv(show):
     
     
 def getRow(show):
-    valuesToGet = ["Title","Plot","Metascore","imdbVotes","tomatoUserMeter"]
+    valuesToGet = ["Title","Plot","Metascore","imdbVotes","tomatoUserMeter","tomatoUserRating","tomatoRating","imdbRating"]
     row = []
     for id in valuesToGet:
         val = show[id]
@@ -49,9 +49,17 @@ def is_number(s):
             int(str)
             return True
         except ValueError:
-            return False
+            try:
+                float(str)
+                return True;
+            except ValueError:
+                return False
 
 def cleanNumber(number):
     str = number.replace(",","")
-    return int(str)
+    try:
+        ret = int(str)
+        return ret
+    except ValueError:
+        return float(str)
     
