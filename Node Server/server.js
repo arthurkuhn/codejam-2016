@@ -33,6 +33,12 @@ app.get("/choose-likes"), function(req,res){
   });
 }
 
+app.post("/postMovie",function(req,res)){
+  console.log(req);
+  console.log(res);
+  res.sendStatus(200);
+}
+
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
