@@ -176,23 +176,29 @@ db.once('open', function(){
 function renderMovieList(res, user){
     //TODO load top movies and pass them to view
     var Movie = mongoose.model("Movie");
-
-    Movie.find({},null,{limit:20, sort:{
+    var bestMovies = [];
+    Movie.find({},null,{sort:{
         "tomatoUserMeter":1
     }},function(req,movies){
+        for(var i=0; i < movies.length; i++){
+            var mGenres = movies[i].Genre.split(",").trim();
+            for(var k=0; j < user.genres; j++){
+                
+            }
+        }
+
+
         res.render('pages/selectMovies.ejs', {
             user: user,
             movieList: movies
         });
     });
-
-
 }
 function renderGenreList(res, user){
     console.log(user.name);
     res.render('pages/selectGenres.ejs', {
         user: user,
-        genres: ["Action", "Adventure", "Comedy", "Animation",
+        genres: ["Action", "Adventure", "Animation",
         "Biography", "Comedy", "Crime", "Fantasy",
         "Game-Show", "History", "Horror", "Music", "Musical",
         "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",

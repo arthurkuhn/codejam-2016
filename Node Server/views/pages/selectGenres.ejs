@@ -1,5 +1,5 @@
   <% include ../partials/head %>
-  <% include ../partials/header %>
+
 
   <script>
 function submitGenre() {
@@ -19,23 +19,23 @@ function submitGenre() {
 }
   </script>
 
-<div class = "container">
 
-<center><label> Welcome &nbsp;<%= user.name %> </label></center>
-<center><label> Please select genres you like: </label></center>
+
+<div id="question" class="flexItem"> Welcome <%= user.name %>, what genres do you like? </div>
+
 <br>
 
 <form id="genreForm" onsubmit="return submitGenre()" target="_self">
+  <div class="checkboxContainer">
     <% for(var i=0; i < genres.length; i++) { %>
-  <label class = "btn btn-default" id="genres">
-    <input type="checkbox" autocomplete="off" class="genreInput" name="<%= genres[i] %>">
+
+    <input type="checkbox" autocomplete="off"  id="<%= genres[i] %>" class="genreInput flexItem" name="<%= genres[i] %>">
+    <label class = "genreBtn flexItem" for="<%= genres[i] %>" >
        <%= genres[i] %>
      </label>
 
     <% }%>
-    <br>
-    <br>
-    <input type="submit" value="Enter" class ="btn btn-primary">
+  </div>
+    <input type="submit" value="Continue" id="enterBtn" class ="flexItem">
   </form>
 
-</div>
