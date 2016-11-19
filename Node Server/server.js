@@ -38,7 +38,25 @@ app.post("/postMovie",function(req,res){
   res.sendStatus(200);
 });
 
-app.post("/setUserFilms", function(req, res){
+app.post("/user/:user/setMovies", function(req, res){
+
+});
+
+app.post("/user/:user/setGenres", function(req, res){
+    var name = req.params.user;
+    var User = mongoose.model("Users");
+
+    var genres = req.params.genres.split(" ");
+
+    User.findOne({'name':name}, 'genres', function(err,user){
+        user.genres = genres;
+        user.save(function(err, user){
+            if(err) return console.error(err);
+            if(genres < 1){
+                res.write("Not")
+            }
+        });
+    });
 
 });
 
@@ -47,7 +65,7 @@ app.get("/openUser", function(req,res){
 
     var User = mongoose.model("Users");
 
-    User.findOne({'name':name}, 'name, movies, genres', function(err, user){
+    User.findOne({'name':name}, 'name movies genres', function(err, user){
         if(!err){
             if(user==null){
                 var newUser = new User({name:name, movies:[], genres:[]});
@@ -102,6 +120,7 @@ function renderMovieList(res, user){
     });
 }
 function renderGenreList(res, user){
+    console.log(user.name);
     res.render('pages/selectGenres.ejs', {
         user: user,
         genres: ["Action", "Adventure", "Comedy", "Animation",
