@@ -3,7 +3,19 @@
 
   <script>
 function submitGenre() {
-  var name = document.getElementById("genreInput").value;
+  var genreInputs = document.getElementByClassName("genreInput");
+  var genreString;
+  var i;
+  for(i = 0; i < genreInputs.length; i++)
+  {
+    if(genreInputs[i].checked == true)
+    {
+      genreString += genreInputs[i].getAttribute("name") + ", ";
+    }
+  }
+ console.log(genreString);
+
+ return false;
 }
   </script>
 
@@ -13,17 +25,17 @@ function submitGenre() {
 <center><label> Please select genres you like: </label></center>
 <br>
 
-<form id="genreForm">
+<form id="genreForm" onsubmit="return submitGenre()" target="_self">
     <% for(var i=0; i < genres.length; i++) { %>
-  <label class = "btn btn-default">
-    <input type="checkbox" autocomplete="off" id="genreInput">
+  <label class = "btn btn-default" id="genres">
+    <input type="checkbox" autocomplete="off" class="genreInput" name="<%= genres[i] %>">
        <%= genres[i] %>
      </label>
 
     <% }%>
     <br>
     <br>
-    <input type="submit" value="Enter">
+    <input type="submit" value="Enter" class ="btn btn-primary">
   </form>
 
 </div>
