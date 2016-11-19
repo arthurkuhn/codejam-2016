@@ -20,10 +20,11 @@ def main():
     #print(r.content)
     
     show = json.loads(r.content.decode("utf-8") )
-    print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
-    print(show["Title"])
-    #Send to DB1
-    #r = requests.post(mondbPutUrl, data = payload)
+    #print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
+    
+    
+    #Send to DB
+    r = requests.post(mondbPutUrl, data = show)
     
     #Save as a new row in a csv File
     
@@ -31,13 +32,13 @@ def main():
     
     with open(fileAddress, 'wb') as csvfile:
         spamwriter = csv.writer(csvfile,delimiter = ',', quotechar = '"', doublequote = True, skipinitialspace = True, lineterminator = '\r\n', quoting = csv.QUOTE_MINIMAL)
-        #spamwriter.writerow(row)
+        spamwriter.writerow(row)
         
     print("done")
     
-def getRow(jsonObj):
-    #print(jsonObj)
-    return
+def getRow(show):
+    row = [show["Title"],show[""]]
+    return row
     
     
     
