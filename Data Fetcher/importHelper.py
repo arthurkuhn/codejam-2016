@@ -14,4 +14,4 @@ def fetchShowsList():
             resultList.append(row)
             print(', '.join(row))
 
-    return resultList
+    return []
