@@ -22,8 +22,13 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 app.set('view engine', 'ejs');
 
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/public/index.html");
+// app.get("/", function(req, res) {
+//     res.sendFile(__dirname + "/public/index.html");
+// });
+
+// index page
+app.get('/', function(req, res) {
+    res.render('pages/index');
 });
 
 app.get("/choose-likes"), function(req,res){
