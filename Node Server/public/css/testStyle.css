@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html,body{
+    padding:0px;
+    margin:0px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align:center;
+    background-color:black;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.flexItem{
+    display: flex;
+}
+
+#question{
+    font-size:50px;
+    color: #c4bcc5;
+    font-family: 'Roboto', sans-serif;
+    width:100%;
+    justify-content: center;
+}
+
+#nameInput{
+    background-color:transparent;
+    border:none;
+    width:100%;
+    height:60px;
+    color:white;
+    font-size:60px;
+    justify-content: center;
+    text-align: center;
+    border-bottom:1px solid white;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+#enterBtn{
+    background-color:transparent;
+    border:none;
+    color:#c4bcc5;
+    font-size:50px;
+    justify-content: center;
+    width:100%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+#genreForm{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 600px;
+}
+.checkboxContainer{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.genreBtn{
+    border:none;
+    padding:10px;
+    margin:10px;
+    color: #dddddd;
+    cursor:pointer;
+    border-radius:5px;
+    border:1px solid transparent;
+
+}
+
+.genreBtn:hover{
+    border:1px solid white;
+}
+
+.genreInput{
+    display:none;
+    color:white;
+}
+
+.genreInput:checked + .genreBtn{
+    background-color:gray;
+    color:white;
+}
+
+#enterBtn:hover{
+    color:white;
+}
+
+#continueBtn{
+    text-align:center;
+    justify-content: center;
+}
