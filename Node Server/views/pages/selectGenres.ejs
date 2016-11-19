@@ -1,16 +1,29 @@
   <% include ../partials/head %>
+  <% include ../partials/header %>
+
+  <script>
+function submitGenre() {
+  var name = document.getElementById("genreInput").value;
+}
+  </script>
 
 <div class = "container">
 
 <center><label> Welcome &nbsp;<%= user.name %> </label></center>
 <center><label> Please select genres you like: </label></center>
 <br>
+
+<form id="genreForm">
     <% for(var i=0; i < genres.length; i++) { %>
-  <label class = "btn btn-default" id="genres">
-    <input type="checkbox" autocomplete="off">
+  <label class = "btn btn-default">
+    <input type="checkbox" autocomplete="off" id="genreInput">
        <%= genres[i] %>
      </label>
 
     <% }%>
+    <br>
+    <br>
+    <input type="submit" value="Enter">
+  </form>
 
 </div>
