@@ -176,30 +176,67 @@ db.once('open', function(){
 function renderMovieList(res, user){
     //TODO load top movies and pass them to view
     var Movie = mongoose.model("Movie");
+    var totalGenres = 22;
     var bestMovies = [];
     Movie.find({},null,{sort:{
         "tomatoUserMeter":1
     }},function(req,movies){
         for(var i=0; i < movies.length; i++){
-            var movieScore = 0;
             var mGenres = movies[i].Genre.split(",");
+
+            var matchedGenres = 0;
+
             for(var j=0; j < mGenres.length; j++) {
                 var mGenre = mGenres[j].trim().toLowerCase();
-                for (var k = 0; k < user.genres; k++) {
+                for (var k = 0; k < user.genres.length; k++) {
                     var genre = user.genres[k];
                     if(genre.toLowerCase() == mGenre){
-                        movieScore += 10;
+                        matchedGenres++;
                     }
                 }
             }
-            if(bestMovies.length < 20){
-                bestMovies.push({movie:movies[i], score:movieScore});
-            }else{
-                for(var j=0; j < bestMovies.length; j++){
-                    if(bestMovies[j].score < movieScore){
-                        bestMovies[j] = {movie:movies[i], score:movieScore};
+
+            var prob = matchedGenres/mGenres.length;
+            var genreScore = prob*10;
+
+            var ratings = [];
+            var imdbRating = parseInt(movies[i].imdbRating);
+            var tomaRating = parseInt(movies[i].tomatoRating);
+
+            if(!isNaN(imdbRating)){
+                ratings.push(imdbRating);
+            }
+            if(!isNaN(tomaRating)){
+                ratings.push(tomaRating);
+            }
+            var average = 0;
+            if(ratings.length > 0){
+                for(var r=0; r < ratings.length; r++){
+                    average+=ratings[r];
+                }
+                average = average / ratings.length;
+            }
+
+            var score = genreScore + average;
+
+            console.log(movies[i].Title+" "+score);
+
+            if(bestMovies.length == 0){
+                bestMovies.push({movie:movies[i], score:score})
+            }else {
+                var inserted = false;
+                for (var j = 0; j < bestMovies.length; j++) {
+                    if (bestMovies[j].score < score) {
+                        bestMovies.splice(j, 0, {movie:movies[i], score:score});
+                        inserted = true;
+                        while(bestMovies.length >20){
+                            bestMovies.pop();
+                        }
                         break;
                     }
+                }
+                if(!inserted && bestMovies.length < 20){
+                    bestMovies.push({movie:movies[i], score:score});
                 }
             }
         }
