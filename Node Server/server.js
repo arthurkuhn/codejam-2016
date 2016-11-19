@@ -21,8 +21,6 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 
 app.set('view engine', 'ejs');
 
-//var db = mongoose.connect('mongodb://');
-
 
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/public/index.html");
