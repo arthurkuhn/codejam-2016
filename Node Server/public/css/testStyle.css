@@ -127,3 +127,8 @@ textarea:focus, input:focus{
      border:1px solid white;
     opacity:1;
  }
+
+#welcome {
+
+    font-size: 80px;
+}
