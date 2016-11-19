@@ -19,5 +19,16 @@ def fetchShowsList():
             show_name = row[0][i1+2:i2-1]
             print(show_name)
             resultList.append(show_name)
+    with codecs.open('metacriticShowList.csv', encoding='utf8') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        for row in spamreader:
+            if(":" in row[0]):
+                limit = row[0].find(":")
+                show_name = row[0][0:limit]
+                if("User" in show_name):
+                    continue
+                print(show_name)
+                if(show_name not in resultList):
+                    resultList.append(show_name)
    
     return resultList

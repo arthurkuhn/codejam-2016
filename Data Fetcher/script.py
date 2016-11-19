@@ -17,9 +17,11 @@ def main():
         
         show = json.loads(r.content.decode("utf-8") )
         #print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
-
-        if 'Error' in show:
+        
+        if(not(isValid(show))):
             continue
+
+        
     
         exportHelper.exportShow(show)
         counter+=1
@@ -27,5 +29,12 @@ def main():
     print("Imported: " + str(counter) + " shows")
 
 
+def isValid(response):
+    if 'Error' in response:
+        return False
+    if("http" not in response["Poster"]):
+        return False
+    return True
+    
 if __name__ == "__main__":
     main()

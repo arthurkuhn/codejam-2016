@@ -12,11 +12,15 @@ def exportShow(show):
     cleanShow(show)
     
     #Send to DB
-    addShowToDb(show)
+    #addShowToDb(show)
     
     #Save as a new row in a csv File
-    addShowToCsv(show)
     
+    valuesToGet = ["Title","Plot","Metascore","imdbVotes","tomatoUserMeter","tomatoUserRating","tomatoRating","imdbRating"]
+    addShowToCsv(show, valuesToGet, "withText.csv")
+    
+    valuesToGet = ["Title","Metascore","imdbVotes","imdbRating","tomatoUserMeter","tomatoUserRating","tomatoRating"]
+    addShowToCsv(show, valuesToGet, "numsonly.csv")
 
 def addShowToDb(show):
     mondbPutUrl = "http://localhost:8080/postMovie"
@@ -24,20 +28,19 @@ def addShowToDb(show):
     print(r.status_code)
     print(r.content)
     
-def addShowToCsv(show):
-    fileAddress = "test.csv"
-    row = getRow(show)
+def addShowToCsv(show, values,fileAddress):
+    row = getRow(show, values)
     with open(fileAddress, 'a', newline='') as csvfile:
         spamwriter = csv.writer(csvfile,delimiter = ',', quotechar = '"', doublequote = True, skipinitialspace = True, lineterminator = '\r\n', quoting = csv.QUOTE_MINIMAL)
         spamwriter.writerow(row)
     
     
-def getRow(show):
+def getRow(show, values):
     valuesToGet = ["Title","Plot","Metascore","imdbVotes","tomatoUserMeter","tomatoUserRating","tomatoRating","imdbRating"]
     row = []
     for id in valuesToGet:
         row.append(show[id])
-    return row
+    return row    
     
     
 def is_number(s):
@@ -66,6 +69,8 @@ def cleanNumber(number):
 
 def cleanShow(show):
     for key in show:
+        if("N/A" in show[key]):
+            show[key] = ""
         if(is_number(show[key])):
             c_num = cleanNumber(show[key])
             show[key] = c_num
