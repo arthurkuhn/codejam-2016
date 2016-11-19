@@ -7,7 +7,7 @@ import importHelper
 
 def main():
     
-    movieList = importHelper.fetchMovieList()
+    movieList = importHelper.fetchShowsList()
     
     counter = 0
     for movTitle in movieList:
@@ -17,8 +17,7 @@ def main():
         
         show = json.loads(r.content.decode("utf-8") )
         #print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
-        
-        
+
         if 'Error' in show:
             continue
     

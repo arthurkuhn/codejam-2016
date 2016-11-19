@@ -6,7 +6,7 @@ Created on Sat Nov 19 11:27:28 2016
 """
 import csv
 
-def fetchMovieList():
+def fetchShowsList():
     resultList = []
     with open('movieList.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
@@ -14,4 +14,4 @@ def fetchMovieList():
             resultList.append(row)
             print(', '.join(row))
 
-    return ["The Gringe","The Shinning"]
+    return resultList
