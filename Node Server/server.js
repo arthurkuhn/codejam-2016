@@ -394,136 +394,29 @@ function renderMovieRecommendations(res,user, actorList, genreList){
             genreNums[i] = g;
     }
    // console.log(genreNums);
-
+    var Movie = mongoose.model("Movie");
 
     pyshell = new PythonShell("getMovies.py", {mode:"text"});
     pyshell.send(genreNums).send(user.movies);
     pyshell.on("message", function(data){
+        if(data) {
+            var movies = data.replace(/'/g, "").replace("[", "").replace("]", "").split(",");
+            for(var i=0; i < movies.length; i++){
+                movies[i] = movies[i].trim();
+            }
+            Movie.find({"Title": {$in: movies}}, null, {}, function (req, movies1) {
+                console.log(movies1.length);
+                res.render('pages/showUser.ejs', {
+                    user: user,
+                    movieList: movies1
+                });
+            });
+        }
         console.log("python: "+data)
     });
     pyshell.end(function (err) {
         if (err) throw err;
         console.log('finished');
-    });
-
-
-    var bestMovies;
-
-    var Movie = mongoose.model("Movie");
-    var totalGenres = 22;
-    var bestMovies = [];
-    var movieLimit = 5;
-    Movie.find({},null,{sort:{
-        "tomatoUserMeter":1
-    }},function(req,movies){
-        for(var i=0; i < movies.length; i++){
-            var mGenres = movies[i].Genre;
-
-            var animeCheck = false;
-
-            var matchedGenres = 0;
-            var checked = false;
-            for(var j=0; j < mGenres.length; j++) {
-
-                var mGenre = mGenres[j].trim().toLowerCase();
-                if(mGenre in genreList){
-                    matchedGenres+=2;
-                }
-                if(mGenre == "animation"){
-                    animeCheck = true;
-                }
-                for (var k = 0; k < user.genres.length; k++) {
-                    var genre = user.genres[k];
-                    if(genre == "animation"){
-                        animeCheck = false;
-                    }
-                    if(genre.toLowerCase() == mGenre){
-                        matchedGenres+=3;
-                    }
-                }
-            }
-            var actorPoints = 0;
-            var mActors = movies[i]["Actors"].split(',');
-            for(var j=0; j < mActors.length; j++){
-                var actor = mActors[j].trim();
-                if(actor in actorList){
-                    actorPoints+=actorList[actor];
-                }
-            }
-
-
-
-            for(var k = 0; k < user.movies.length; k++){
-                if(user.movies[k].toLowerCase() == movies[i].Title.toLowerCase()){
-                    checked = true;
-                }
-            }
-            var prob = matchedGenres/mGenres.length;
-            var genreScore = prob*10-(user.genres.length-matchedGenres)*2;
-
-            var ratings = [];
-            var imdbRating = parseInt(movies[i].imdbRating);
-            var tomaRating = parseInt(movies[i].tomatoRating);
-            var tomaRating_user = parseInt(movies[i].tomatoUserRating);
-            var criticUsers = parseInt(movies[i].userscore);
-            if(!isNaN(criticUsers)){
-                ratings.push(criticUsers);
-            }
-            if(!isNaN(imdbRating)){
-                ratings.push(imdbRating);
-            }
-            if(!isNaN(tomaRating)){
-                ratings.push(tomaRating);
-            }
-            if(!isNaN(tomaRating_user)){
-                ratings.push(tomaRating_user);
-            }
-            var average = 0;
-
-
-
-            if(ratings.length > 0){
-                for(var r=0; r < ratings.length; r++){
-                    average+=ratings[r];
-                }
-                average = average / ratings.length;
-            }
-
-            var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
-
-            var score = genreScore*3 +actorPoints*3;
-
-            if(checked)
-                score-=100;
-            if(animeCheck){
-                score -=15;
-            }
-
-            if(bestMovies.length == 0){
-                bestMovies.push({movie:movies[i], score:score, checked:checked})
-            }else {
-                var inserted = false;
-                for (var j = 0; j < bestMovies.length; j++) {
-                    if (bestMovies[j].score < score) {
-                        bestMovies.splice(j, 0, {movie:movies[i], score:score, checked:checked});
-                        inserted = true;
-                        while(bestMovies.length >movieLimit){
-                            bestMovies.pop();
-                        }
-                        break;
-                    }
-                }
-                if(!inserted && bestMovies.length < movieLimit){
-                    bestMovies.push({movie:movies[i], score:score, checked:checked});
-                }
-            }
-        }
-
-
-        res.render('pages/showUser.ejs', {
-            user: user,
-            movieList: bestMovies
-        });
     });
 }
 
