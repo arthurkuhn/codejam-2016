@@ -36,9 +36,8 @@ def addShowToCsv(show, values,fileAddress):
     
     
 def getRow(show, values):
-    valuesToGet = ["Title","Plot","Metascore","imdbVotes","tomatoUserMeter","tomatoUserRating","tomatoRating","imdbRating"]
     row = []
-    for id in valuesToGet:
+    for id in values:
         row.append(show[id])
     return row    
     
@@ -70,7 +69,7 @@ def cleanNumber(number):
 def cleanShow(show):
     for key in show:
         if("N/A" in show[key]):
-            show[key] = ""
+            show[key] = "0"
         if(is_number(show[key])):
             c_num = cleanNumber(show[key])
             show[key] = c_num
