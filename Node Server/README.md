@@ -8,6 +8,7 @@ Node server hosting a recommendation engine
 - MongoDB: our own remote MongoDB database URI is configured in `config/database.js` don't change it :)
 
 ## Installation
+From the Node Server folder:
 
 1. Install the application: `npm install`
 2. Start the server: `node server.js`
