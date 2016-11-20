@@ -37,7 +37,8 @@ def addShowToDb(show):
     print(r.content)
     
 def addHeaderRow(fileName,row):
-    with open(fileName, 'r', newline='') as csvfile:
+    print(row)
+    with open(fileName, 'w', newline='') as csvfile:
         spamwriter = csv.writer(csvfile,delimiter = ',', quotechar = '"', doublequote = True, skipinitialspace = True, lineterminator = '\r\n', quoting = csv.QUOTE_MINIMAL)
         spamwriter.writerow(row)
     
