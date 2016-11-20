@@ -19,6 +19,7 @@ def main():
         show = json.loads(r.content.decode("utf-8") )
         #print(json.dumps(showimdb, sort_keys=False,indent=4, separators=(',', ': ')))
         
+        print("Getting Metacritic Data")
         metacriticData = scraper.getMetaCriticData(movTitle)
         
         if(not(isValid(show))):

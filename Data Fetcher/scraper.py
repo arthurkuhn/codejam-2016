@@ -12,7 +12,8 @@ import time
 import csv
 import re
 
-def scrapeMetacritic(baseUrl):
+def scrapeMetacritic(showName):
+    baseUrl = getUrl(showName)
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     url = baseUrl + '/critic-reviews'
     page = requests.get(url, headers=headers)
@@ -20,7 +21,10 @@ def scrapeMetacritic(baseUrl):
     if(page.status_code == 403):
         return -2
     if(page.status_code != 200):
-        return -1
+        baseUrl = searchShow()
+         url = baseUrl + '/critic-reviews'
+         page = requests.get(url, headers=headers)
+         tree = html.fromstring(page.content)
     
     criticReviews = []
     
@@ -61,6 +65,12 @@ def scrapeMetacritic(baseUrl):
         return -3
     
     return criticReviews + userReviews
+
+def getUrl(showName):
+    movTitleLower = showName.lower()
+    movTitle = movTitleLower.replace(" ", "-")
+    url = "http://www.metacritic.com/tv/" + movTitle
+    return url
     
 
 def clean(obj):
@@ -89,10 +99,7 @@ def handleError(movie,message):
         spamwriter.writerow(log)
 
 def getMetaCriticData(movie):
-     movTitleLower = movie.lower()
-     movTitle = movTitleLower.replace(" ", "-")
-     url = "http://www.metacritic.com/tv/" + movTitle
-     metaRatings = scrapeMetacritic(url)
+     metaRatings = scrapeMetacritic(movie)
      if(metaRatings == -3):
          handleError(movie,"Not Enough Info")
      if(metaRatings == -2):
@@ -101,6 +108,19 @@ def getMetaCriticData(movie):
          handleError(movie, "Connection Error")
      return metaRatings
     
+     
+def searchShow(showName):
+    url ="http://www.metacritic.com/search/all/" + showName + "/results?cats%5Btv%5D=1&search_type=advanced"
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+    page = requests.get(url, headers=headers)
+    tree = html.fromstring(page.content)
+    correctUrl = tree.xpath('//*[@id="main"]/div[2]/div[1]/ul/li/div[2]/div/div[1]/h3/a/@href')
+    handleError(showName, "Using url: " + correctUrl)
+    page = requests.get(correctUrl, headers=headers)
+    tree = html.fromstring(page.content)
+    return tree
+    
+        
             
 def main():
     with open("metacritic.csv", 'w', newline='') as csvfile:
@@ -109,10 +129,7 @@ def main():
         movieList = importHelper.fetchShowsList()
         counter = 0
         for movie in movieList:
-            movTitleLower = movie.lower()
-            movTitle = movTitleLower.replace(" ", "-")
-            url = "http://www.metacritic.com/tv/" + movTitle
-            metaRatings = scrapeMetacritic(url)
+            metaRatings = scrapeMetacritic(movie)
             if(metaRatings == -3):
                 handleError(movie,"Not Enough Info")
                 continue
