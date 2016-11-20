@@ -11,7 +11,7 @@ var movieSchema = new Schema({
     "Rated": String,
     "Released": String,
     "Runtime": String,
-    "Genre": String,//"Crime, Thriller",
+    "Genre": Array,//"Crime, Thriller",
     "Director": String,
     "Writer": String, //"George Clayton Johnson, Jack Golden Russell, Harry Brown, Charles Lederer, Ted Griffin (screenplay)",
     "Actors": String, //"George Clooney, Cecelia Ann Birt, Paul L. Nolan, Carol Florence",

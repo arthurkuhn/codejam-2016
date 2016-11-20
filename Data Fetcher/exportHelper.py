@@ -6,6 +6,7 @@ Created on Sat Nov 19 11:05:18 2016
 """
 import csv
 import requests
+import genres_constant
 
 def exportShow(show,init):
     
@@ -52,7 +53,16 @@ def addShowToCsv(show, values,fileAddress):
 def getRow(show, values):
     row = []
     for id in values:
-        row.append(show[id])
+        if(id == "Genre"):
+            for i in range(3):
+                if(len(show[id])>i):
+                    temp = genres_constant.getGenreNum(show[id][i])
+                    row.append(temp)
+                else :
+                    row.append(temp)
+        else :
+            row.append(show[id])
+        
     return row    
     
     
@@ -84,6 +94,13 @@ def cleanShow(show):
     for key in show:
         if(type(show[key]) is int):
             continue
+        if(key == "Genre"):
+            arr = []
+            genres = show[key].split(",")
+            for genre in genres:
+                tmp = genre.replace(",","")
+                arr.append(tmp.strip())
+            show[key] = arr
         if("N/A" in show[key]):
             show[key] = "0"
         if(is_number(show[key])):
