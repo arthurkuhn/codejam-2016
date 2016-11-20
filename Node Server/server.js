@@ -9,6 +9,14 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var PythonShell = require('python-shell');
+
+var genres = ["Action", "Adventure", "Animation",
+    "Biography", "Comedy", "Crime", "Fantasy",
+    "Game-Show", "History", "Horror", "Music", "Musical",
+    "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",
+    "Sitcom", "Sports", "Talk-Show", "Thriller", "War", "Western"];
+
 require("./models/movie.js");
 require("./models/user.js");
 // configuration ===============================================================
@@ -237,8 +245,11 @@ function renderMovieList(res, user){
             var ratings = [];
             var imdbRating = parseInt(movies[i].imdbRating);
             var tomaRating = parseInt(movies[i].tomatoRating);
-            var tomaRating_user = parseInt(movies[i].tomatoUserRating);
-
+            var tomaRating_user = parseInt(movies[i].tomatoUserRating)
+            var criticUsers = parseInt(movies[i].userscore);
+            if(!isNaN(criticUsers)){
+                ratings.push(criticUsers);
+            }
             if(!isNaN(imdbRating)){
                 ratings.push(imdbRating);
             }
@@ -308,11 +319,7 @@ function renderMovieList(res, user){
 function renderGenreList(res, user){
     console.log(user.name);
     //list of genres from imdb
-    var genres = ["Action", "Adventure", "Animation",
-        "Biography", "Comedy", "Crime", "Fantasy",
-        "Game-Show", "History", "Horror", "Music", "Musical",
-        "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",
-        "Sitcom", "Sports", "Talk-Show", "Thriller", "War", "Western"];
+
     //final array. Contains if the user already checked it
     var checkedGenres = [];
     for(var i=0; i < genres.length; i++){
@@ -365,7 +372,7 @@ function renderRecomendedMovies(res, user){
 
                     for (var k = 0; k < mGenres.length; k++) {
                         var genre = mGenres[k].trim();
-                        if (isNaN(actors[genre])) {
+                        if (isNaN(genres[genre])) {
                             genres[genre] = 1;
                         } else {
                             genres[genre]++;
@@ -378,6 +385,22 @@ function renderRecomendedMovies(res, user){
 }
 
 function renderMovieRecommendations(res,user, actorList, genreList){
+
+
+    var genreNums = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    for(var i=0; i < genres.length; i++){
+        var g = genreList[genres[i]];
+        if(g)
+            genreNums[i] = g;
+    }
+    console.log(genreNums);
+
+    /**
+       pyshell = new PythonShell("getMovies.py", {mode:"json"});
+       pyshell.send({genres:genreNums, movies:user.movies});
+    **/
+
+
     var bestMovies;
 
     var Movie = mongoose.model("Movie");
@@ -436,7 +459,10 @@ function renderMovieRecommendations(res,user, actorList, genreList){
             var imdbRating = parseInt(movies[i].imdbRating);
             var tomaRating = parseInt(movies[i].tomatoRating);
             var tomaRating_user = parseInt(movies[i].tomatoUserRating);
-
+            var criticUsers = parseInt(movies[i].userscore);
+            if(!isNaN(criticUsers)){
+                ratings.push(criticUsers);
+            }
             if(!isNaN(imdbRating)){
                 ratings.push(imdbRating);
             }
