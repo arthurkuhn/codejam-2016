@@ -71,7 +71,7 @@ def main():
         
         algoData = np.asarray(to_pred).reshape(1, -1)
         res = mod.predict(algoData)
-            
+        print(res)
         show["Kmeans"] = int(res[0])
         
         if(counter == 0):
