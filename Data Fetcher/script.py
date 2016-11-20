@@ -21,6 +21,7 @@ def main():
         
         print("Getting Metacritic Data")
         metacriticData = scraper.getMetaCriticData(movTitle)
+        print("Got Meta Data")
         
         if(not(isValid(show))):
             continue

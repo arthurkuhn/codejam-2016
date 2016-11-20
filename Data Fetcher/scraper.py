@@ -21,10 +21,11 @@ def scrapeMetacritic(showName):
     if(page.status_code == 403):
         return -2
     if(page.status_code != 200):
-        baseUrl = searchShow()
-         url = baseUrl + '/critic-reviews'
-         page = requests.get(url, headers=headers)
-         tree = html.fromstring(page.content)
+        print("Getting better URL")
+        baseUrl = searchShow(showName)
+        url = baseUrl + '/critic-reviews'
+        page = requests.get(url, headers=headers)
+        tree = html.fromstring(page.content)
     
     criticReviews = []
     
