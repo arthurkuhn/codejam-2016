@@ -7,3 +7,17 @@
     <a href="/user/<%= user.name %>/movies" id="changeGenres" class="option flexItem">changes movies</a>
 </div>
 
+<div id="movieList" class="flexItem">
+    <% for(var i=0; i < movieList.length; i++) { %>
+    <div class="movie flexItem">
+
+
+        <input type="checkbox" <% if (movieList[i].checked){%>checked<% } %> autocomplete="off"  id="<%= movieList[i].movie.Title %>" class="movieInput flexItem" name="<%= movieList[i].movie.Title %>">
+
+        <label class = "moviebtn flexItem" for="<%= movieList[i].movie.Title %>" >
+            <img class="poster" src="<%= movieList[i].movie.Poster %>"></img>
+        </label>
+
+    </div>
+    <% }%>
+</div>

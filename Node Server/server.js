@@ -152,9 +152,7 @@ app.get("/user/:user", function(req,res){
                 if(user.movies.length < 5){
                     res.redirect("/user/"+name+"/movies");
                 }else{
-                    res.render('pages/showUser.ejs', {
-                        user: user
-                    });
+                    renderRecomendedMovies(res, user);
                 }
             }
         }else{
@@ -237,8 +235,6 @@ function renderMovieList(res, user){
                 score+=30;
 
 
-            console.log(movies[i].Title+" "+score);
-
             if(bestMovies.length == 0){
                 bestMovies.push({movie:movies[i], score:score, checked:checked})
             }else {
@@ -293,6 +289,156 @@ function renderGenreList(res, user){
 
     });
 }
+
+function renderRecomendedMovies(res, user){
+    var Movie = mongoose.model("Movie");
+
+
+
+        Movie.find({"Title":{$in: user.movies}}, function(err, movies) {
+            var actors = {};
+            var genres = {};
+
+            for(var j=0; j < movies.length; j++){
+                var movie = movies[j];
+
+                if(movie!=null) {
+                    var mActors = movie["Actors"].split(',');
+                    var mGenres = movie["Genre"].split(',');
+
+
+                    for (var k = 0; k < mActors.length; k++) {
+                        var actor = mActors[k].trim();
+                        if (isNaN(actors[actor])) {
+                            actors[actor] = 1;
+                        } else {
+                            actors[actor]++;
+                        }
+                    }
+
+                    for (var k = 0; k < mGenres.length; k++) {
+                        var genre = mGenres[k].trim();
+                        if (isNaN(actors[genre])) {
+                            genres[genre] = 1;
+                        } else {
+                            genres[genre]++;
+                        }
+                    }
+                }
+            }
+            renderMovieRecommendations(res, user,actors, genres);
+          });
+}
+
+function renderMovieRecommendations(res,user, actorList, genreList){
+    var bestMovies;
+
+    var Movie = mongoose.model("Movie");
+    var totalGenres = 22;
+    var bestMovies = [];
+    var movieLimit = 5;
+    Movie.find({},null,{sort:{
+        "tomatoUserMeter":1
+    }},function(req,movies){
+        for(var i=0; i < movies.length; i++){
+            var mGenres = movies[i].Genre.split(",");
+
+            var matchedGenres = 0;
+            var checked = false;
+            for(var j=0; j < mGenres.length; j++) {
+
+                var mGenre = mGenres[j].trim().toLowerCase();
+                if(mGenre in genreList){
+                    matchedGenres+=2;
+                }
+
+                for (var k = 0; k < user.genres.length; k++) {
+                    var genre = user.genres[k];
+                    if(genre.toLowerCase() == mGenre){
+                        matchedGenres+=3;
+                    }
+                }
+            }
+            var actorPoints = 0;
+            var mActors = movies[i]["Actors"].split(',');
+            for(var j=0; j < mActors.length; j++){
+                var actor = mActors[j].trim();
+                if(actor in actorList){
+                    actorPoints+=actorList[actor];
+                }
+            }
+
+
+
+            for(var k = 0; k < user.movies.length; k++){
+                if(user.movies[k].toLowerCase() == movies[i].Title.toLowerCase()){
+                    checked = true;
+                }
+            }
+            var prob = matchedGenres/mGenres.length;
+            var genreScore = prob*10-(user.genres.length-matchedGenres)*2;
+
+            var ratings = [];
+            var imdbRating = parseInt(movies[i].imdbRating);
+            //var tomaRating = parseInt(movies[i].tomatoRating);
+            //var tomaRating_user = parseInt(movies[i].tomatoUserRating);
+
+            if(!isNaN(imdbRating)){
+                ratings.push(imdbRating);
+            }
+            //if(!isNaN(tomaRating)){
+            //    ratings.push(tomaRating);
+            //}
+
+            //    ratings.push(tomaRating_user);
+            //}
+            var average = 0;
+
+
+
+            if(ratings.length > 0){
+                for(var r=0; r < ratings.length; r++){
+                    average+=ratings[r];
+                }
+                average = average / ratings.length;
+            }
+
+            var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
+
+            var score = genreScore/2 + average + popularRating +actorPoints*2;
+
+            if(checked)
+                score-=100;
+
+
+            if(bestMovies.length == 0){
+                bestMovies.push({movie:movies[i], score:score, checked:checked})
+            }else {
+                var inserted = false;
+                for (var j = 0; j < bestMovies.length; j++) {
+                    if (bestMovies[j].score < score) {
+                        bestMovies.splice(j, 0, {movie:movies[i], score:score, checked:checked});
+                        inserted = true;
+                        while(bestMovies.length >movieLimit){
+                            bestMovies.pop();
+                        }
+                        break;
+                    }
+                }
+                if(!inserted && bestMovies.length < movieLimit){
+                    bestMovies.push({movie:movies[i], score:score, checked:checked});
+                }
+            }
+        }
+
+
+        res.render('pages/showUser.ejs', {
+            user: user,
+            movieList: bestMovies
+        });
+    });
+}
+
 // listen (start app with node server.js) ======================================
 app.listen(port);
 console.log("App listening on port " + port);
