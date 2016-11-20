@@ -142,3 +142,12 @@ textarea:focus, input:focus{
 
     font-size: 80px;
 }
+
+.hMenu{
+    flex-flow:row;
+
+}
+.hmenu .option{
+    margin-left:10px;
+    margin-right:10px;
+}
