@@ -33,7 +33,7 @@ app.get("/choose-likes"), function(req,res){
       articles: articles
   });
 }
-
+//endpoint to post a movie to the database
 app.post("/postMovie",function(req,res){
   if(!req.body){
       return res.send({"status": "error", "message": "missing a parameter"});
@@ -59,18 +59,19 @@ app.post("/postMovie",function(req,res){
       }
   });
 });
-
+//endpoint to set a users movie preferences
+//movies should be sent as a comma separated list
 app.post("/user/:user/movies/set", function(req, res){
     var name = req.params.user;
     var User = mongoose.model("Users");
 
     var movies = req.body.movies.split(",");
-
+    //find user and save movies.
     User.findOne({'name':name}, 'movies', function(err,user){
         user.movies = movies;
         user.save(function(err, user){
-            if(err) res.sendStatus(200);
-            if(movies < 1){
+            if(err) res.sendStatus(400);
+            if(movies.length < 1){
                 res.sendStatus(400);
             }else{
                 res.sendStatus(200);
@@ -79,18 +80,19 @@ app.post("/user/:user/movies/set", function(req, res){
         });
     });
 });
-
+//Endoint to set the genre preference for a user
+//Genres should be sent as a comma seperated list
 app.post("/user/:user/genres/set", function(req, res){
     var name = req.params.user;
     var User = mongoose.model("Users");
 
     var genres = req.body.genres.split(",");
-
+    //find user and save genres.
     User.findOne({'name':name}, 'genres', function(err,user){
         user.genres = genres;
         user.save(function(err, user){
-            if(err) res.sendStatus(200);
-            if(genres < 1){
+            if(err) res.sendStatus(400);
+            if(genres.length < 1){
                 res.sendStatus(400);
             }else{
                 res.sendStatus(200);
@@ -99,12 +101,15 @@ app.post("/user/:user/genres/set", function(req, res){
     });
 
 });
+//Page used to set the genres
+//Displays a list of all the imdb genres
 app.get("/user/:user/genres", function(req,res){
     var name = req.params.user
     var User = mongoose.model("Users");
     User.findOne({'name':name}, 'name movies genres', function(err, user){
         if(!err){
             if(user==null){
+                //if user doesn't exist, redirect to home page
                 res.redirect("/");
                 return;
             }else{
@@ -115,12 +120,15 @@ app.get("/user/:user/genres", function(req,res){
         }
     });
 });
+//Page used to set movies
+//Displays a list of personalized movies to choose from
 app.get("/user/:user/movies", function(req,res){
     var name = req.params.user;
     var User = mongoose.model("Users");
     User.findOne({'name':name}, 'name movies genres', function(err, user){
         if(!err){
             if(user==null){
+                //if user doesn't exist, redirect to home page
                 res.redirect("/");
                 return;
             }else{
@@ -131,6 +139,9 @@ app.get("/user/:user/movies", function(req,res){
         }
     });
 });
+//User profile page.
+//Will redirect to /genres or /movies depending on setup proccess
+//If setup is finished, will display movie suggestions
 app.get("/user/:user", function(req,res){
     var name = req.params.user;
 
@@ -146,12 +157,15 @@ app.get("/user/:user", function(req,res){
                 });
 
             }else{
+                //check to see if user has selected at least one genre
                 if(user.genres.length < 1){
                     res.redirect("/user/"+name+"/genres");
                 }else
+                    //check to see if user has selected at least 5 movies
                 if(user.movies.length < 5){
                     res.redirect("/user/"+name+"/movies");
                 }else{
+                    //Called when genres and movies pass the checked
                     renderRecomendedMovies(res, user);
                 }
             }
@@ -170,38 +184,48 @@ db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function(){
 
 });
-
+//Render the movie list for the selectMovie page.
+//Movies are based on the genres selected, rating across platforms and popularity.
 function renderMovieList(res, user){
     //TODO load top movies and pass them to view
     var Movie = mongoose.model("Movie");
-    var totalGenres = 22;
-    var bestMovies = [];
-    var movieLimit = 40;
+    var bestMovies = []; //array to contain the final movie list
+    var movieLimit = 40; //limit of movies to display
+    //Find all movies, sort by number of imdb votes
     Movie.find({},null,{sort:{
-        "tomatoUserMeter":1
+        "imdbVotes":1
     }},function(req,movies){
         for(var i=0; i < movies.length; i++){
+            //get movie genres
             var mGenres = movies[i].Genre.split(",");
 
-            var matchedGenres = 0;
-            var checked = false;
+            var matchedGenres = 0; //keep track of how many genres match
+
+            var checked = false; //has movie already been checked by user
+
             for(var j=0; j < mGenres.length; j++) {
-                var mGenre = mGenres[j].trim().toLowerCase();
+                var mGenre = mGenres[j].trim().toLowerCase(); //movie genre
+                //go through user genres
                 for (var k = 0; k < user.genres.length; k++) {
                     var genre = user.genres[k];
+                    //check to see if user genre matches movie genre
                     if(genre.toLowerCase() == mGenre){
                         matchedGenres++;
                     }
                 }
             }
+            //go through user movies to see if it's already checked
             for(var k = 0; k < user.movies.length; k++){
                 if(user.movies[k].toLowerCase() == movies[i].Title.toLowerCase()){
                     checked = true;
                 }
             }
+            //Assign a genre score to genres based on how many user genres matched the movie genres.
+            //Designed to punish movies that have too many genres / that are not specific enough
             var prob = matchedGenres/mGenres.length;
             var genreScore = prob*10-(user.genres.length-matchedGenres)*2;
 
+            //Collect different ratings and average them out
             var ratings = [];
             var imdbRating = parseInt(movies[i].imdbRating);
             //var tomaRating = parseInt(movies[i].tomatoRating);
@@ -227,14 +251,17 @@ function renderMovieList(res, user){
                 average = average / ratings.length;
             }
 
+            // Assign rating based on how popular it is
             var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
 
+            //Makes a score based on the genre score, average rating and popular rating
             var score = genreScore + average + popularRating;
 
+            //Bump the checked movies up so that they are at the top of the page
             if(checked)
-                score+=30;
+                score+=60;
 
-
+            //Put movie in array if it scores better than another movie
             if(bestMovies.length == 0){
                 bestMovies.push({movie:movies[i], score:score, checked:checked})
             }else {
@@ -243,6 +270,7 @@ function renderMovieList(res, user){
                     if (bestMovies[j].score < score) {
                         bestMovies.splice(j, 0, {movie:movies[i], score:score, checked:checked});
                         inserted = true;
+                        //Remove excess movies
                         while(bestMovies.length >movieLimit){
                             bestMovies.pop();
                         }
@@ -262,18 +290,22 @@ function renderMovieList(res, user){
         });
     });
 }
+//Render the list of genres
 function renderGenreList(res, user){
-    console.log(user.name)
+    console.log(user.name);
+    //list of genres from imdb
     var genres = ["Action", "Adventure", "Animation",
         "Biography", "Comedy", "Crime", "Fantasy",
         "Game-Show", "History", "Horror", "Music", "Musical",
         "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",
         "Sitcom", "Sports", "Talk-Show", "Thriller", "War", "Western"];
+    //final array. Contains if the user already checked it
     var checkedGenres = [];
     for(var i=0; i < genres.length; i++){
         var checked = false;
         for(var j=0; j < user.genres.length; j ++){
             console.log(user.genres[j].toLowerCase().trim()+" "+genres[i].toLowerCase().trim());
+            //check if user checked the genre previously
             if(user.genres[j].toLowerCase().trim() == genres[i].toLowerCase().trim()) {
                 checked = true;
                 break;
@@ -289,7 +321,8 @@ function renderGenreList(res, user){
 
     });
 }
-
+//Render final list of remcomended movies
+//very similar to renderMovieList() but has additional ratings such as actors
 function renderRecomendedMovies(res, user){
     var Movie = mongoose.model("Movie");
 
@@ -405,7 +438,7 @@ function renderMovieRecommendations(res,user, actorList, genreList){
 
             var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
 
-            var score = genreScore/2 + average + popularRating +actorPoints*2;
+            var score = genreScore*2 +average/2+ popularRating/2 +actorPoints*2;
 
             if(checked)
                 score-=100;
