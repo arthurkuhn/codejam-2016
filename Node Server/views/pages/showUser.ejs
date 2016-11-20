@@ -1,0 +1,9 @@
+<% include ../partials/head %>
+
+
+<div id="question" class="flexItem"> Ok <%= user.name %>, we think you might like these TV shows...</div>
+<div class="hMenu flexItem">
+    <a href="/user/<%= user.name %>/genres" id="changeGenres" class="option flexItem">changes genres</a>
+    <a href="/user/<%= user.name %>/movies" id="changeGenres" class="option flexItem">changes movies</a>
+</div>
+
