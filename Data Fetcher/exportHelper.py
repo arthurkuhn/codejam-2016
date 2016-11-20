@@ -7,26 +7,39 @@ Created on Sat Nov 19 11:05:18 2016
 import csv
 import requests
 
-def exportShow(show):
+def exportShow(show,init):
     
     cleanShow(show)
     
     #Send to DB
-    #addShowToDb(show)
+    addShowToDb(show)
     
     #Save as a new row in a csv File
+    
+    
     
     valuesToGet = ["Title","Plot","Metascore","imdbVotes","tomatoUserMeter","tomatoUserRating","tomatoRating","imdbRating"]
     addShowToCsv(show, valuesToGet, "withText.csv")
     
-    valuesToGet = ["Title","Metascore","imdbVotes","imdbRating","tomatoUserMeter","tomatoUserRating","tomatoRating"]
+    if(init):
+        addHeaderRow("withText.csv",valuesToGet)
+    
+    valuesToGet = ["Title","Genre","Metascore","imdbVotes","imdbRating","criticscore","criticcount","criticpos","criticmixed","criticneg","userscore","usercount","userpos","usermixed","userneg"]
     addShowToCsv(show, valuesToGet, "numsonly.csv")
+    
+    if(init):
+        addHeaderRow("numsonly.csv",valuesToGet)
 
 def addShowToDb(show):
     mondbPutUrl = "http://localhost:8080/postMovie"
     r = requests.post(mondbPutUrl, data = show)
     print(r.status_code)
     print(r.content)
+    
+def addHeaderRow(fileName,row):
+    with open(fileName, 'r', newline='') as csvfile:
+        spamwriter = csv.writer(csvfile,delimiter = ',', quotechar = '"', doublequote = True, skipinitialspace = True, lineterminator = '\r\n', quoting = csv.QUOTE_MINIMAL)
+        spamwriter.writerow(row)
     
 def addShowToCsv(show, values,fileAddress):
     row = getRow(show, values)
@@ -68,6 +81,8 @@ def cleanNumber(number):
 
 def cleanShow(show):
     for key in show:
+        if(type(show[key]) is int):
+            continue
         if("N/A" in show[key]):
             show[key] = "0"
         if(is_number(show[key])):

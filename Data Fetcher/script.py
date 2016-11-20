@@ -3,6 +3,7 @@ import requests
 import json
 import exportHelper
 import importHelper
+import scraper
 
 
 def main():
@@ -12,21 +13,41 @@ def main():
     counter = 0
     for movTitle in movieList:
         #Pull Data
-        query = "http://www.omdbapi.com/?t=" + movTitle + "&y=&plot=long&tomatoes=true&r=json"
+        query = "http://www.omdbapi.com/?t=" + movTitle + "&y=&plot=long&tomatoes=true&r=json&type=series"
         r = requests.get(query)
         
         show = json.loads(r.content.decode("utf-8") )
-        #print(json.dumps(show, sort_keys=False,indent=4, separators=(',', ': ')))
+        #print(json.dumps(showimdb, sort_keys=False,indent=4, separators=(',', ': ')))
+        
+        metacriticData = scraper.getMetaCriticData(movTitle)
         
         if(not(isValid(show))):
             continue
-
+        if(type(metacriticData) is int):
+            metacriticData = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+            print("Bad Meta for Show: " + movTitle)
         
-    
-        exportHelper.exportShow(show)
+        show["criticscore"] = metacriticData[0]
+        show["criticcount"] = metacriticData[1]
+        show["criticpos"] = metacriticData[2]
+        show["criticmixed"] = metacriticData[3]
+        show["criticneg"] = metacriticData[4]
+        show["userscore"] = metacriticData[5]
+        show["usercount"] = metacriticData[6]
+        show["userpos"] = metacriticData[7]
+        show["usermixed"] = metacriticData[8]
+        show["userneg"] = metacriticData[9]
+            
+        if(counter == 0):
+            init = True
+        else :
+            init = False
+        
+        exportHelper.exportShow(show,init)
         counter+=1
+        print(counter)
     
-    print("Imported: " + str(counter) + " shows")
+    print("Imported: " + str(counter) + " showimdbs")
 
 
 def isValid(response):

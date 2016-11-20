@@ -1,0 +1,32 @@
+Title,Critic Score,Critic Count,Critic Pos,Critic Mixed,Critic Neg,User Score,User Count,User Pos,User Mixed,User Neg
+Band of Brothers,86,28,23,5,0,9,286,269,10,7
+Planet Earth,-1,-1,-1,-1,0,8,30,28,-1,2
+Breaking Bad,73,27,23,4,0,9,3578,3,63,65
+Game of Thrones,80,28,22,6,0,9,3501,3,72,115
+The Wire,79,22,18,4,0,9,543,523,8,12
+The Sopranos,88,20,19,1,0,9,340,328,8,4
+Sherlock,85,17,17,-1,0,9,1057,1,21,29
+Last Week Tonight with John Oliver,76,14,11,3,0,8,158,135,4,19
+Westworld,74,43,32,10,-1,8,516,460,31,25
+Firefly,63,30,16,9,-1,8,418,353,11,54
+Human Planet,79,4,3,1,0,8,10,9,-1,1
+True Detective,87,41,37,3,-1,9,1696,1,40,49
+The Twilight Zone,-1,-1,-1,-1,0,8,21,19,-1,2
+Fargo,85,40,37,3,0,9,994,940,23,31
+Frozen Planet,91,15,15,-1,0,8,37,34,1,2
+Death Note,-1,-1,-1,-1,0,9,229,215,4,10
+House of Cards,85,11,11,-1,0,8,9,8,-1,1
+Stranger Things,76,34,29,5,0,9,1341,1,55,33
+Arrested Development,89,26,24,2,0,9,420,398,7,15
+Narcos,77,19,15,4,0,9,494,475,10,9
+Twin Peaks,96,16,16,-1,0,9,240,230,4,6
+Seinfeld,79,9,8,1,0,9,171,159,6,6
+Friends,59,20,9,8,-1,8,415,367,8,40
+Freaks and Geeks,88,26,25,1,0,8,138,127,1,10
+The Crown,81,29,25,4,0,8,81,70,4,7
+Black Mirror,-1,-1,3,-1,0,8,192,171,9,12
+Rome,71,25,19,4,-1,9,177,171,5,1
+Gravity Falls,-1,-1,2,1,0,9,172,161,2,9
+Making a Murderer,84,21,21,-1,0,8,197,174,9,14
+The Simpsons,80,6,5,1,0,8,309,285,12,12
+Oz,70,17,11,5,-1,7,65,49,4,12
