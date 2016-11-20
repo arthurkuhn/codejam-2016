@@ -113,6 +113,10 @@ textarea:focus, input:focus{
     flex-wrap:wrap;
     width:100%;
 }
+#changeGenres{
+    color: #919191;
+    font-size:20px;
+}
 .movie{
     margin:10px;
 }

@@ -279,7 +279,8 @@ function renderGenreList(res, user){
     }
     res.render('pages/selectGenres.ejs', {
         user: user,
-        genres:checkedGenres
+        genres:checkedGenres,
+        newUser:(user.genres.length==0)
 
     });
 }
