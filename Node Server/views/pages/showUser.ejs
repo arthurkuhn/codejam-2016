@@ -1,0 +1,22 @@
+<% include ../partials/head %>
+
+
+<div id="question" class="flexItem"> Ok <%= user.name %>, we think you might like these TV shows...</div>
+<div class="hMenu flexItem">
+    <a href="/user/<%= user.name %>/genres" id="changeGenres" class="option flexItem">change genres</a>
+    <a href="/user/<%= user.name %>/movies" id="changeGenres" class="option flexItem">change shows</a>
+</div>
+
+<div id="movieList" class="flexItem">
+    <% for(var i=0; i < movieList.length; i++) { %>
+    <div class="movie flexItem">
+
+        <a class="flexItem" href="http://www.imdb.com/title/<%= movieList[i].movie.imdbID %>">
+        <label class = "moviebtn full flexItem" for="<%= movieList[i].movie.Title %>" >
+            <img class="poster" src="<%= movieList[i].movie.Poster %>"></img>
+        </label>
+            </a>
+
+    </div>
+    <% }%>
+</div>

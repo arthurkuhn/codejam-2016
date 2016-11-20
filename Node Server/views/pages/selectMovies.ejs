@@ -1,15 +1,35 @@
 <% include ../partials/head %>
 
-<div id="question" class="flexItem"> <%= user.name %>, what movies do you like? </div>
+<script>
+    function submitMovies() {
+        var movieInputs = document.getElementsByClassName("movieInput");
+        var movieString = "";
+        var i;
+        for(i = 0; i < movieInputs.length; i++)
+        {
+            if(movieInputs[i].checked == true)
+            {
+                movieString += movieInputs[i].getAttribute("name") + ",";
+            }
+        }
+        $.post("/user/<%= user.name %>/movies/set", {movies:movieString}).done(function(data){
+            window.location = "/user/<%= user.name %>";
+        });
 
+        return false;
+    }
+</script>
 
-<form class="flexItem" id="movies">
+<div id="question" class="flexItem"> <%= user.name %>, what shows do you like? </div>
+<a href="/user/<%= user.name %>/genres" id="changeGenres" class="flexItem">change genres</a>
+
+<form class="flexItem" id="movies" onsubmit="return submitMovies()">
     <div id="movieList" class="flexItem">
         <% for(var i=0; i < movieList.length; i++) { %>
         <div class="movie flexItem">
 
 
-        <input type="checkbox" autocomplete="off"  id="<%= movieList[i].movie.Title %>" class="movieInput flexItem" name="<%= movieList[i].movie.Title %>">
+        <input type="checkbox" <% if (movieList[i].checked){%>checked<% } %> autocomplete="off"  id="<%= movieList[i].movie.Title %>" class="movieInput flexItem" name="<%= movieList[i].movie.Title %>">
 
         <label class = "moviebtn flexItem" for="<%= movieList[i].movie.Title %>" >
             <img class="poster" src="<%= movieList[i].movie.Poster %>"></img>

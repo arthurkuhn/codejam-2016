@@ -13,10 +13,8 @@ function submitGenre() {
       genreString += genreInputs[i].getAttribute("name") + ",";
     }
   }
- console.log(genreString);
-
-  $.post("/user/<%= user.name %>/genres/set", {genres:genreString}, function(data){
-
+  $.post("/user/<%= user.name %>/genres/set", {genres:genreString}).done(function(data){
+        window.location = "/user/<%= user.name %>/movies";
   });
 
  return false;
@@ -25,17 +23,16 @@ function submitGenre() {
 
 
 
-<div id="question" class="flexItem"> Welcome <%= user.name %>, what genres do you like? </div>
+<div id="question" class="flexItem"> Welcome <% if(!newUser){%>back <% } %><%= user.name %>, what genres do you like? </div>
 
 <br>
 
 <form id="genreForm" onsubmit="return submitGenre()" target="_self">
   <div class="checkboxContainer">
     <% for(var i=0; i < genres.length; i++) { %>
-
-    <input type="checkbox" autocomplete="off"  id="<%= genres[i] %>" class="genreInput flexItem" name="<%= genres[i] %>">
-    <label class = "genreBtn flexItem" for="<%= genres[i] %>" >
-       <%= genres[i] %>
+    <input type="checkbox" <% if (genres[i].checked){%>checked<% } %> autocomplete="off"  id="<%= genres[i].genre %>" class="genreInput flexItem" name="<%= genres[i].genre %>">
+    <label class = "genreBtn flexItem" for="<%= genres[i].genre %>" >
+       <%= genres[i].genre %>
      </label>
 
     <% }%>

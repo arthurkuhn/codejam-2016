@@ -73,6 +73,7 @@ textarea:focus, input:focus{
     color: #dddddd;
     cursor:pointer;
     border-radius:5px;
+    font-size:20px;
     border:1px solid transparent;
 
 }
@@ -103,9 +104,18 @@ textarea:focus, input:focus{
     text-align:center;
     justify-content: center;
     flex-flow: column;
+    width:100%;
 }
 #movieList{
+    flex-justify:center;
+    justify-content:center;
     flex-flow:row;
+    flex-wrap:wrap;
+    width:100%;
+}
+#changeGenres{
+    color: #919191;
+    font-size:20px;
 }
 .movie{
     margin:10px;
@@ -120,6 +130,18 @@ textarea:focus, input:focus{
     border:1px solid gray;
     opacity:0.5;
 }
+.movieBtn.full{
+    opacity:1;
+}
+.movieBtn:hover{
+    opacity:0.8;
+    cursor:pointer;
+    border:1px solid #9a9a9a;
+}
+.full:hover{
+    opacity:1;
+    border:1px solid white;
+}
 .movieInput{
     display: none;
 }
@@ -127,3 +149,17 @@ textarea:focus, input:focus{
      border:1px solid white;
     opacity:1;
  }
+
+#welcome {
+
+    font-size: 80px;
+}
+
+.hMenu{
+    flex-flow:row;
+
+}
+.hmenu .option{
+    margin-left:10px;
+    margin-right:10px;
+}
