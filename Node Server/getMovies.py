@@ -3,6 +3,6 @@ import sys, json
 
 
 # simple JSON echo script
-
-for line in sys.stdin:
-    print(line)
+genres = sys.stdin.readline().split(',')
+movies = sys.stdin.readline().split(',')
+print(movies[0])
