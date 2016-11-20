@@ -20,6 +20,7 @@ class Model(object):
         data = scale(X)
         n_samples, n_features = data.shape
         num_classes = 10
+        #No PCA was used
         #reduced_data = PCA(n_components=2).fit_transform(data)
         estimator = KMeans(init='k-means++', n_clusters=num_classes, n_init=10)
         self.model = estimator.fit(data)

@@ -16,6 +16,7 @@ def main():
     
     counter = 0
     for movTitle in movieList:
+        counter+=1
         #Pull Data
         query = "http://www.omdbapi.com/?t=" + movTitle + "&y=&plot=long&tomatoes=true&r=json&type=series"
         r = requests.get(query)
@@ -50,7 +51,6 @@ def main():
         
         to_pred = []
         to_pred.append(show["imdbVotes"])
-        #Add cats
         for i in range(3):
             if(len(genres)>i):
                 temp = genres_constant.getGenreNum(genres[i])
@@ -72,7 +72,7 @@ def main():
         algoData = np.asarray(to_pred).reshape(1, -1)
         res = mod.predict(algoData)
             
-        show["Kmeans"] = res[0]
+        show["Kmeans"] = int(res[0])
         
         if(counter == 0):
             init = True
@@ -80,7 +80,7 @@ def main():
             init = False
         
         exportHelper.exportShow(show,init)
-        counter+=1
+        
         print(counter)
     
     print("Imported: " + str(counter) + " showimdbs")
