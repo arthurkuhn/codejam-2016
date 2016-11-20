@@ -12,7 +12,7 @@ def exportShow(show,init):
     cleanShow(show)
     
     #Send to DB
-    addShowToDb(show)
+    #addShowToDb(show)
     
     #Save as a new row in a csv File
     
