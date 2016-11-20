@@ -24,8 +24,9 @@ function submitGenre() {
 
 
 <div id="question" class="flexItem"> Welcome <% if(!newUser){%>back <% } %><%= user.name %>, what genres do you like? </div>
-
-<br>
+  <div class="hMenu flexItem">
+      <a href="/" id="changeGenres" class="flexItem">change user</a>
+  </div>
 
 <form id="genreForm" onsubmit="return submitGenre()" target="_self">
   <div class="checkboxContainer">

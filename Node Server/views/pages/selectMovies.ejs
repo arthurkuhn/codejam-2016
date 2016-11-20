@@ -21,8 +21,10 @@
 </script>
 
 <div id="question" class="flexItem"> <%= user.name %>, what shows do you like? </div>
-<a href="/user/<%= user.name %>/genres" id="changeGenres" class="flexItem">change genres</a>
-
+<div class="hMenu flexItem">
+    <a href="/" id="changeGenres" class="flexItem">change user</a>
+    <a href="/user/<%= user.name %>/genres" id="changeGenres" class="option flexItem">change genres</a>
+</div>
 <form class="flexItem" id="movies" onsubmit="return submitMovies()">
     <div id="movieList" class="flexItem">
         <% for(var i=0; i < movieList.length; i++) { %>
