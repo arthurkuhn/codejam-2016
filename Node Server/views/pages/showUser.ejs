@@ -12,10 +12,10 @@
     <% for(var i=0; i < movieList.length; i++) { %>
     <div class="movie flexItem">
 
-        <a class="flexItem" href="http://www.imdb.com/title/<%= movieList[i].movie.imdbID %>">
-        <label class = "moviebtn full flexItem" for="<%= movieList[i].movie.Title %>" >
-            <img class="poster" src="<%= movieList[i].movie.Poster %>"></img>
-            <div class="title"><%= movieList[i].movie.Title %></div>
+        <a class="flexItem" href="http://www.imdb.com/title/<%= movieList[i].imdbID %>">
+        <label class = "moviebtn full flexItem" for="<%= movieList[i].Title %>" >
+            <img class="poster" src="<%= movieList[i].Poster %>"></img>
+            <div class="title"><%= movieList[i].Title %></div>
         </label>
             </a>
 
