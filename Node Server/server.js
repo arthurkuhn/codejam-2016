@@ -12,10 +12,10 @@ var methodOverride = require('method-override');
 var PythonShell = require('python-shell');
 
 var genres = ["Action", "Adventure", "Animation",
-    "Biography", "Comedy", "Crime", "Fantasy",
+    "Biography", "Comedy", "Crime","Documentary","Drama","Family" , "Fantasy",
     "Game-Show", "History", "Horror", "Music", "Musical",
     "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi",
-    "Sitcom", "Sports", "Talk-Show", "Thriller", "War", "Western"];
+    "Sitcom", "Sport", "Talk-Show", "Thriller", "War", "Western"];
 
 require("./models/movie.js");
 require("./models/user.js");
@@ -205,7 +205,7 @@ function renderMovieList(res, user){
     }},function(req,movies){
         for(var i=0; i < movies.length; i++){
             //get movie genres
-            var mGenres = movies[i].Genre.split(",");
+            var mGenres = movies[i].Genre;
 
             var matchedGenres = 0; //keep track of how many genres match
 
@@ -358,7 +358,7 @@ function renderRecomendedMovies(res, user){
 
                 if(movie!=null) {
                     var mActors = movie["Actors"].split(',');
-                    var mGenres = movie["Genre"].split(',');
+                    var mGenres = movie["Genre"];
 
 
                     for (var k = 0; k < mActors.length; k++) {
@@ -393,12 +393,18 @@ function renderMovieRecommendations(res,user, actorList, genreList){
         if(g)
             genreNums[i] = g;
     }
-    console.log(genreNums);
+   // console.log(genreNums);
 
-    /**
-       pyshell = new PythonShell("getMovies.py", {mode:"json"});
-       pyshell.send({genres:genreNums, movies:user.movies});
-    **/
+
+    pyshell = new PythonShell("getMovies.py", {mode:"text"});
+    pyshell.send(genreNums).send(user.movies);
+    pyshell.on("message", function(data){
+        console.log("python: "+data)
+    });
+    pyshell.end(function (err) {
+        if (err) throw err;
+        console.log('finished');
+    });
 
 
     var bestMovies;
@@ -411,7 +417,7 @@ function renderMovieRecommendations(res,user, actorList, genreList){
         "tomatoUserMeter":1
     }},function(req,movies){
         for(var i=0; i < movies.length; i++){
-            var mGenres = movies[i].Genre.split(",");
+            var mGenres = movies[i].Genre;
 
             var animeCheck = false;
 
@@ -485,7 +491,7 @@ function renderMovieRecommendations(res,user, actorList, genreList){
 
             var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
 
-            var score = genreScore*3+average/2+ popularRating/2 +actorPoints*3;
+            var score = genreScore*3 +actorPoints*3;
 
             if(checked)
                 score-=100;
