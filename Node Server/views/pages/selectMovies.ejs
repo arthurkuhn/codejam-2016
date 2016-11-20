@@ -20,9 +20,9 @@
     }
 </script>
 
-<div id="question" class="flexItem"> <%= user.name %>, what shows do you like? </div>
+<div id="question" class="flexItem"> <%= user.name %>, select at least 3 shows you enjoyed watching. </div>
 <div class="hMenu flexItem">
-    <a href="/" id="changeGenres" class="flexItem">change user</a>
+    <a href="/" id="changeGenres" class="flexItem">change user</a>&nbsp;-
     <a href="/user/<%= user.name %>/genres" id="changeGenres" class="option flexItem">change genres</a>
 </div>
 <form class="flexItem" id="movies" onsubmit="return submitMovies()">
@@ -34,7 +34,8 @@
         <input type="checkbox" <% if (movieList[i].checked){%>checked<% } %> autocomplete="off"  id="<%= movieList[i].movie.Title %>" class="movieInput flexItem" name="<%= movieList[i].movie.Title %>">
 
         <label class = "moviebtn flexItem" for="<%= movieList[i].movie.Title %>" >
-            <img class="poster" src="<%= movieList[i].movie.Poster %>"></img>
+            <img class="poster" src="<%= movieList[i].movie.Poster %>">
+            <div class="title"><%= movieList[i].movie.Title %></div>
         </label>
 
         </div>

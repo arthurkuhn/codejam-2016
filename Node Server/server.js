@@ -203,11 +203,19 @@ function renderMovieList(res, user){
 
             var checked = false; //has movie already been checked by user
 
+            var animeCheck = false;
+
             for(var j=0; j < mGenres.length; j++) {
                 var mGenre = mGenres[j].trim().toLowerCase(); //movie genre
+                if(mGenre == "animation"){
+                    animeCheck = true;
+                }
                 //go through user genres
                 for (var k = 0; k < user.genres.length; k++) {
                     var genre = user.genres[k];
+                    if(genre == "animation"){
+                        animeCheck = false;
+                    }
                     //check to see if user genre matches movie genre
                     if(genre.toLowerCase() == mGenre){
                         matchedGenres++;
@@ -228,18 +236,20 @@ function renderMovieList(res, user){
             //Collect different ratings and average them out
             var ratings = [];
             var imdbRating = parseInt(movies[i].imdbRating);
-            //var tomaRating = parseInt(movies[i].tomatoRating);
-            //var tomaRating_user = parseInt(movies[i].tomatoUserRating);
+            var tomaRating = parseInt(movies[i].tomatoRating);
+            var tomaRating_user = parseInt(movies[i].tomatoUserRating);
 
             if(!isNaN(imdbRating)){
                 ratings.push(imdbRating);
             }
-            //if(!isNaN(tomaRating)){
-            //    ratings.push(tomaRating);
-            //}
+            if(!isNaN(tomaRating)){
+                ratings.push(tomaRating);
+            }
+            if(!isNaN(tomaRating_user)){
+                ratings.push(tomaRating_user);
+            }
 
-            //    ratings.push(tomaRating_user);
-            //}
+
             var average = 0;
 
 
@@ -256,6 +266,10 @@ function renderMovieList(res, user){
 
             //Makes a score based on the genre score, average rating and popular rating
             var score = genreScore + average + popularRating;
+
+            if(animeCheck){
+                score -= 6;
+            }
 
             //Bump the checked movies up so that they are at the top of the page
             if(checked)
@@ -376,6 +390,8 @@ function renderMovieRecommendations(res,user, actorList, genreList){
         for(var i=0; i < movies.length; i++){
             var mGenres = movies[i].Genre.split(",");
 
+            var animeCheck = false;
+
             var matchedGenres = 0;
             var checked = false;
             for(var j=0; j < mGenres.length; j++) {
@@ -384,9 +400,14 @@ function renderMovieRecommendations(res,user, actorList, genreList){
                 if(mGenre in genreList){
                     matchedGenres+=2;
                 }
-
+                if(mGenre == "animation"){
+                    animeCheck = true;
+                }
                 for (var k = 0; k < user.genres.length; k++) {
                     var genre = user.genres[k];
+                    if(genre == "animation"){
+                        animeCheck = false;
+                    }
                     if(genre.toLowerCase() == mGenre){
                         matchedGenres+=3;
                     }
@@ -413,18 +434,18 @@ function renderMovieRecommendations(res,user, actorList, genreList){
 
             var ratings = [];
             var imdbRating = parseInt(movies[i].imdbRating);
-            //var tomaRating = parseInt(movies[i].tomatoRating);
-            //var tomaRating_user = parseInt(movies[i].tomatoUserRating);
+            var tomaRating = parseInt(movies[i].tomatoRating);
+            var tomaRating_user = parseInt(movies[i].tomatoUserRating);
 
             if(!isNaN(imdbRating)){
                 ratings.push(imdbRating);
             }
-            //if(!isNaN(tomaRating)){
-            //    ratings.push(tomaRating);
-            //}
-
-            //    ratings.push(tomaRating_user);
-            //}
+            if(!isNaN(tomaRating)){
+                ratings.push(tomaRating);
+            }
+            if(!isNaN(tomaRating_user)){
+                ratings.push(tomaRating_user);
+            }
             var average = 0;
 
 
@@ -438,11 +459,13 @@ function renderMovieRecommendations(res,user, actorList, genreList){
 
             var popularRating = (parseInt(movies[i].imdbVotes)/1000000)*10;
 
-            var score = genreScore*2 +average/2+ popularRating/2 +actorPoints*2;
+            var score = genreScore*3+average/2+ popularRating/2 +actorPoints*3;
 
             if(checked)
                 score-=100;
-
+            if(animeCheck){
+                score -=15;
+            }
 
             if(bestMovies.length == 0){
                 bestMovies.push({movie:movies[i], score:score, checked:checked})

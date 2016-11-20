@@ -75,7 +75,6 @@ textarea:focus, input:focus{
     border-radius:5px;
     font-size:20px;
     border:1px solid transparent;
-
 }
 
 .genreBtn:hover{
@@ -127,25 +126,27 @@ textarea:focus, input:focus{
 
 }
 .movieBtn{
-    border:1px solid gray;
-    opacity:0.5;
+    flex-flow:column;
 }
 .movieBtn.full{
     opacity:1;
 }
-.movieBtn:hover{
+.movieBtn img{
+    border:1px solid gray;
+    opacity:0.5;
+}
+.movieBtn img:hover{
     opacity:0.8;
     cursor:pointer;
     border:1px solid #9a9a9a;
 }
 .full:hover{
     opacity:1;
-    border:1px solid white;
 }
 .movieInput{
     display: none;
 }
-.movieInput:checked + .movieBtn{
+.movieInput:checked + .movieBtn img{
      border:1px solid white;
     opacity:1;
  }
@@ -157,9 +158,17 @@ textarea:focus, input:focus{
 
 .hMenu{
     flex-flow:row;
-
+    font-size:20px;
 }
 .hmenu .option{
     margin-left:10px;
     margin-right:10px;
+}
+
+.title{
+    color:white;
+    overflow:hidden;
+    width:150px;
+    max-width:150px;
+    text-align:center;
 }
