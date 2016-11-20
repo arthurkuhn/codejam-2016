@@ -401,6 +401,9 @@ function renderMovieRecommendations(res,user, actorList, genreList){
     pyshell.on("message", function(data){
         if(data) {
             var movies = data.replace(/'/g, "").replace("[", "").replace("]", "").split(",");
+            for(var i=0; i < movies.length; i++){
+                movies[i] = movies[i].trim();
+            }
             Movie.find({"Title": {$in: movies}}, null, {}, function (req, movies1) {
                 console.log(movies1.length);
                 res.render('pages/showUser.ejs', {
