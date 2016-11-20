@@ -22,7 +22,7 @@ n_samples, n_features = data.shape
 
 sample_size = n_samples
 
-num_classes = 3
+num_classes = 10
 labels = X[:,1]
 
 

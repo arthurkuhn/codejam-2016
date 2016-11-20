@@ -50,7 +50,8 @@ var movieSchema = new Schema({
     "BoxOffice": String,
     "Production": String,
     "Website": String,
-    "Response": Boolean
+    "Response": Boolean,
+    "Kmeans" : Number
 });
 
 

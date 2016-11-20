@@ -25,7 +25,7 @@ def exportShow(show,init):
     if(init):
         addHeaderRow("withText.csv",valuesToGet)
     
-    valuesToGet = ["Title","Genre","Metascore","imdbVotes","imdbRating","criticscore","criticcount","criticpos","criticmixed","criticneg","userscore","usercount","userpos","usermixed","userneg"]
+    valuesToGet = ["Title","Genre","Metascore","imdbVotes","imdbRating","criticscore","criticcount","criticpos","criticmixed","criticneg","userscore","usercount","userpos","usermixed","userneg","Kmeans"]
     addShowToCsv(show, valuesToGet, "numsonly.csv")
     
     if(init):
@@ -67,6 +67,8 @@ def getRow(show, values):
     
     
 def is_number(s):
+    if(type(s) is list):
+        return False
     try:
         int(s)
         return True
@@ -93,6 +95,10 @@ def cleanNumber(number):
 def cleanShow(show):
     for key in show:
         if(type(show[key]) is int):
+            continue
+        if(type(show[key]) is list):
+            continue
+        if(type(show[key]) is float):
             continue
         if(key == "Genre"):
             arr = []

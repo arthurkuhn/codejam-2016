@@ -1,0 +1,261 @@
+Title,Genre,Metascore,imdbVotes,imdbRating,criticscore,criticcount,criticpos,criticmixed,criticneg,userscore,usercount,userpos,usermixed,userneg
+Planet Earth,Documentary,0,105645,9.5,-1,-1,-1,-1,0,8,30,28,-1,2
+Breaking Bad,"Crime, Drama, Thriller",0,912488,9.5,73,27,23,4,0,9,3578,3,63,65
+Game of Thrones,"Adventure, Drama, Fantasy",0,1076389,9.5,80,28,22,6,0,9,3501,3,72,115
+The Wire,"Crime, Drama, Thriller",0,196012,9.4,79,22,18,4,0,9,543,523,8,12
+Cosmos: A Spacetime Odyssey,Documentary,0,61643,9.3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Rick and Morty,"Animation, Adventure, Comedy",0,88173,9.3,85,8,8,-1,0,9,545,523,5,17
+Cosmos,Documentary,0,22172,9.3,83,19,18,1,0,8,335,294,10,31
+The Sopranos,"Crime, Drama",0,195740,9.2,88,20,19,1,0,9,340,328,8,4
+Sherlock,"Crime, Drama, Mystery",0,516103,9.2,85,17,17,-1,0,9,1057,1,21,29
+The World at War,"Documentary, History, War",0,12120,9.2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Life,"Crime, Drama, Mystery",0,29709,8.3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Civil War,"Documentary, History, War",0,5904,9.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Avatar: The Last Airbender,"Animation, Action, Adventure",0,136844,9.2,-1,-1,-1,-1,0,9,317,305,3,9
+Last Week Tonight with John Oliver,"Comedy, News, Talk-Show",0,39166,9.1,76,14,11,3,0,8,158,135,4,19
+Westworld,"Drama, Sci-Fi, Western",0,43916,9.1,74,43,32,10,-1,8,517,460,32,25
+Firefly,"Adventure, Drama, Sci-Fi",0,192082,9.1,63,30,16,9,-1,8,418,353,11,54
+True Detective,"Crime, Drama, Mystery",0,334148,9.1,87,41,37,3,-1,9,1696,1,40,49
+The Twilight Zone,"Fantasy, Horror, Mystery",0,46191,9.0,-1,-1,-1,-1,0,8,21,19,-1,2
+Dekalog,Drama,100,13270,9.1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Fullmetal Alchemist: Brotherhood,"Animation, Action, Adventure",0,52760,9.1,-1,-1,-1,-1,0,9,97,89,3,5
+The Blue Planet,Documentary,0,13819,9.1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Fargo,"Crime, Drama, Thriller",0,181017,9.0,85,40,37,3,0,9,994,940,23,31
+Frozen Planet,Documentary,0,11937,9.1,91,15,15,-1,0,8,37,34,1,2
+Batman: The Animated Series,"Animation, Action, Adventure",0,54674,9.0,-1,-1,-1,-1,0,9,49,46,1,2
+One Punch Man,"Animation, Action, Comedy",0,34467,9.1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Death Note,"Animation, Crime, Drama",0,117080,9.0,-1,-1,-1,-1,0,9,229,215,4,10
+Cowboy Bebop,"Animation, Action, Adventure",0,53720,9.0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+House of Cards,Drama,0,326913,9.0,85,11,11,-1,0,8,9,8,-1,1
+Stranger Things,"Drama, Horror, Mystery",0,206918,9.0,76,34,29,5,0,9,1341,1,55,33
+Pride and Prejudice,"Drama, Romance",0,53965,9.0,45,9,2,4,-1,-1,-1,-1,-1,2
+Arrested Development,Comedy,0,215645,9.0,89,26,24,2,0,9,420,398,7,15
+Monty Python's Flying Circus,Comedy,0,45968,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Das Boot,"Drama, War",0,12434,9.0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+TVF Pitchers,"Comedy, Drama",0,31850,9.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Sarabhai vs Sarabhai,Comedy,0,8231,9.3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Over the Garden Wall,"Animation, Adventure, Drama",0,11948,9.0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Narcos,"Biography, Crime, Drama",0,147729,8.9,77,19,15,4,0,9,494,475,10,9
+Twin Peaks,"Crime, Drama, Mystery",0,113283,8.9,96,16,16,-1,0,9,240,230,4,6
+Seinfeld,Comedy,0,177027,8.9,79,9,8,1,0,9,171,159,6,6
+Friends,"Comedy, Romance",0,492103,9.0,59,20,9,8,-1,8,415,367,8,40
+Only Fools and Horses....,Comedy,0,31789,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Freaks and Geeks,"Comedy, Drama",0,94896,8.9,88,26,25,1,0,8,138,127,1,10
+The Crown,"Drama, History",0,6437,9.1,81,29,25,4,0,8,81,71,4,6
+Black Mirror,"Drama, Sci-Fi, Thriller",0,74211,8.9,-1,-1,3,-1,0,8,192,171,9,12
+Blackadder Goes Forth,"Comedy, War",0,33427,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Rome,"Action, Drama, History",0,116604,8.8,71,25,19,4,-1,9,177,171,5,1
+Fawlty Towers,Comedy,0,60128,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Gravity Falls,"Animation, Adventure, Comedy",0,25455,8.9,-1,-1,2,1,0,9,172,161,2,9
+Making a Murderer,"Documentary, Crime",0,45547,8.8,84,21,21,-1,0,8,197,174,9,14
+The Simpsons,"Animation, Comedy",0,272071,8.8,80,6,5,1,0,8,309,285,12,12
+Oz,"Crime, Drama, Romance",0,67737,8.8,70,17,11,5,-1,7,65,49,4,12
+The Return of Sherlock Holmes,"Crime, Drama, Mystery",0,4821,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Jinx: The Life and Deaths of Robert Durst,Documentary,0,20652,8.8,76,21,17,4,0,8,41,37,1,3
+South Park,"Animation, Comedy",0,246596,8.8,64,17,10,3,-1,8,300,265,19,16
+From the Earth to the Moon,"Action, Drama, History",0,7883,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Dragon Ball Z,"Animation, Action, Adventure",0,78024,8.8,-1,-1,-1,-1,0,8,41,37,-1,4
+Top Gear,"Comedy, Talk-Show",0,81037,8.8,-1,-1,-1,-1,0,8,64,57,2,5
+Horace and Pete,"Comedy, Drama",0,6010,8.9,78,12,11,1,0,8,129,112,6,11
+Hunter x Hunter,"Animation, Action, Adventure",0,18760,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Archer,"Animation, Action, Comedy",0,92294,8.8,78,20,19,1,0,9,340,322,7,11
+House,"Drama, Mystery",0,314026,8.8,75,30,22,7,-1,8,183,171,3,9
+It's Always Sunny in Philadelphia,Comedy,0,136355,8.8,64,23,14,6,-1,9,219,206,6,7
+Six Feet Under,"Comedy, Drama",0,92350,8.8,74,23,17,5,-1,8,168,147,2,19
+Attack on Titan,"Animation, Action, Adventure",0,68643,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Dragon Ball Z,"Animation, Action, Adventure",0,78024,8.8,-1,-1,-1,-1,0,8,41,37,-1,4
+The Office,Comedy,0,207485,8.8,62,30,15,12,-1,8,324,283,26,15
+Chappelle's Show,"Comedy, Music",0,36210,8.7,73,6,5,1,0,8,16,15,-1,1
+Peaky Blinders,"Crime, Drama",0,66011,8.8,-1,-1,-1,2,0,9,171,163,3,5
+Steins;Gate,"Animation, Comedy, Drama",0,18711,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Long Way Round,"Documentary, Adventure",0,8653,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Daredevil,"Action, Adventure, Crime",0,227048,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Deadwood,"Crime, Drama, History",0,66488,8.7,80,26,23,3,0,9,129,125,1,3
+The Adventures of Sherlock Holmes,"Crime, Drama, Mystery",0,13726,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The West Wing,Drama,0,45082,8.8,79,23,18,5,0,8,67,63,-1,4
+North,Comedy,0,18,8.2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Lonesome Dove,"Adventure, Drama, Western",0,15017,8.8,46,13,3,6,-1,4,7,2,2,3
+Dexter,"Crime, Drama, Mystery",0,506506,8.8,77,27,24,2,-1,9,1649,1,39,50
+Better Call Saul,"Crime, Drama",0,159278,8.8,78,43,40,3,0,8,890,804,38,48
+Nathan for You,"Documentary, Comedy",0,6211,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Battlestar Galactica,"Action, Adventure, Drama",0,121883,8.7,-1,-1,1,-1,0,9,287,273,7,7
+The Thick of It,Comedy,0,12644,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Daily Show,"Comedy, News, Talk-Show",0,34520,8.7,-1,-1,-1,-1,0,8,25,20,3,2
+The Night Of,"Crime, Drama",0,47068,8.7,90,40,38,2,0,8,406,373,14,19
+The X-Files,"Drama, Mystery, Sci-Fi",0,151687,8.7,70,14,11,2,-1,8,183,168,9,6
+Black-Adder II,Comedy,0,27173,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Shield,"Crime, Drama, Thriller",0,55230,8.7,92,28,26,2,0,9,162,158,1,3
+Curb Your Enthusiasm,Comedy,0,67797,8.7,80,20,17,3,0,8,74,70,1,3
+Doctor Who,"Adventure, Drama, Family",0,151514,8.8,70,9,7,2,0,8,520,476,27,17
+QI,"Comedy, Game-Show",0,22027,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Rurouni Kenshin: Meiji Kenkaku Romantan: Tsuioku Hen,"Animation, Action, Adventure",0,6606,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Through the Wormhole,Documentary,0,11545,8.7,-1,-1,-1,-1,0,8,12,11,-1,1
+Black Adder the Third,Comedy,0,25701,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Mystery Science Theater 3000,"Comedy, Sci-Fi",0,17292,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Mr. Robot,"Crime, Drama, Thriller",0,189026,8.7,79,23,22,1,0,8,784,701,39,44
+Code Geass: Lelouch of the Rebellion,"Animation, Action, Adventure",0,26646,8.7,-1,-1,-1,-1,0,9,66,63,1,2
+Spaced,Comedy,0,39961,8.7,-1,-1,-1,-1,0,8,35,30,2,3
+Brass Eye,Comedy,0,6702,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Downton Abbey,"Drama, Romance",0,114031,8.7,91,16,15,1,0,8,324,295,11,18
+Shameless,"Comedy, Drama",0,104817,8.7,-1,-1,-1,-1,0,8,11,10,-1,1
+Fullmetal Alchemist,"Animation, Action, Adventure",0,39989,8.7,-1,-1,-1,-1,0,8,56,52,1,3
+One Piece,"Animation, Action, Adventure",0,41075,8.8,-1,-1,-1,-1,0,8,76,67,1,8
+Battlestar Galactica,"Action, Adventure, Drama",0,121883,8.7,-1,-1,1,-1,0,9,287,273,7,7
+Star Trek: The Next Generation,"Action, Adventure, Mystery",0,66763,8.6,51,8,2,4,-1,8,69,60,5,4
+This Is Us,"Comedy, Drama",0,9308,8.8,76,34,28,6,0,8,64,52,6,6
+Yes Minister,Comedy,0,7285,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Louie,"Comedy, Drama",0,59092,8.6,69,20,15,4,-1,8,347,313,20,14
+Generation Kill,"Drama, War",0,35058,8.6,80,27,23,3,-1,8,107,95,2,10
+Impractical Jokers,"Comedy, Reality-TV",0,18288,8.7,-1,-1,2,1,0,8,46,42,1,3
+Young Justice,"Animation, Action, Adventure",0,18471,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Atlanta,"Comedy, Drama",0,6433,8.8,90,36,35,1,0,9,165,155,3,7
+Mad Men,Drama,0,145381,8.6,77,32,27,5,0,8,580,522,31,27
+John Adams,"Biography, Drama, History",0,20134,8.6,78,27,23,4,0,8,119,100,11,8
+Adventure Time,"Animation, Adventure, Comedy",0,49609,8.7,-1,-1,-1,-1,0,7,205,159,11,35
+House of Cards,Drama,0,326913,9.0,85,11,11,-1,0,8,9,8,-1,1
+Ash vs Evil Dead,"Action, Comedy, Fantasy",0,34576,8.7,75,25,22,3,0,8,323,295,14,14
+Samurai Champloo,"Animation, Action, Adventure",0,24839,8.6,-1,-1,-1,-1,0,9,24,23,-1,1
+Parks and Recreation,Comedy,0,127490,8.6,58,25,11,13,-1,7,338,258,58,22
+Flight of the Conchords,"Comedy, Music",0,43475,8.6,68,15,8,6,-1,9,205,188,9,8
+Dr. Horrible's Sing-Along Blog,"Comedy, Musical, Sci-Fi",0,34869,8.6,-1,-1,1,-1,0,8,33,27,2,4
+The Bugs Bunny Show,"Animation, Comedy",0,14756,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Friday Night Lights,"Drama, Sport",0,43641,8.7,78,32,29,2,-1,9,303,280,6,17
+Father Ted,Comedy,0,26545,8.6,-1,-1,-1,-1,0,8,21,18,1,2
+Kardes Payi,"Comedy, Drama, Family",0,7696,8.9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Monster,"Animation, Drama, Mystery",0,9371,8.7,-1,-1,-1,-1,0,8,22,20,-1,2
+Justice League,"Animation, Action, Adventure",0,27762,8.6,-1,-1,-1,-1,0,8,26,23,1,2
+Justified,"Action, Crime, Drama",0,64527,8.6,80,27,23,4,0,9,519,489,18,12
+Alfred Hitchcock Presents,"Crime, Drama, Mystery",0,8958,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Gomorrah,"Crime, Drama, Thriller",0,10939,8.7,76,15,14,1,0,8,42,37,2,3
+Boardwalk Empire,"Crime, Drama, History",0,138283,8.6,88,31,29,2,0,8,629,582,23,24
+The Bridge,"Crime, Mystery, Thriller",0,30369,8.6,65,13,5,8,0,7,17,13,-1,4
+The Office,Comedy,0,207485,8.8,62,30,15,12,-1,8,324,283,26,15
+The Colbert Report,"Comedy, News, Talk-Show",0,31464,8.6,65,22,13,7,-1,8,172,154,7,11
+Homicide: Life on the Street,"Crime, Drama, Mystery",0,8477,8.7,94,18,18,-1,0,8,19,17,1,1
+Neon Genesis Evangelion,"Animation, Action, Drama",0,27447,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Tinker Tailor Soldier Spy,"Drama, Thriller",0,5142,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Coupling,"Comedy, Romance",0,35286,8.6,-1,-1,-1,-1,0,8,27,24,2,1
+Spartacus: Gods of the Arena,"Action, Adventure, Biography",0,92839,8.6,55,6,3,2,-1,8,163,149,8,6
+The Newsroom,Drama,0,81996,8.6,56,31,13,12,-1,8,518,434,49,35
+Peep Show,Comedy,0,35680,8.6,-1,-1,-1,-1,0,8,36,33,-1,3
+Rurouni Kenshin: Wandering Samurai,"Animation, Action, Adventure",0,11578,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Angry Video Game Nerd,Comedy,0,10549,8.6,-1,-1,-1,-1,0,8,24,21,-1,3
+The Prisoner,"Drama, Mystery, Sci-Fi",0,9075,8.6,45,21,3,12,-1,3,81,24,9,48
+Whose Line Is It Anyway?,"Comedy, Game-Show",0,31343,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Venture Bros.,"Animation, Comedy, Sci-Fi",0,18788,8.6,-1,-1,-1,-1,0,8,44,42,-1,2
+Suits,"Comedy, Drama",0,250140,8.7,61,17,8,8,-1,8,486,439,24,23
+Luther,"Crime, Drama, Mystery",0,74208,8.6,83,11,11,-1,0,7,255,189,8,58
+Leyla and Mecnun,"Adventure, Comedy, Drama",0,66354,9.2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Vikings,"Action, Drama, History",0,205503,8.6,71,20,17,3,0,7,582,484,22,76
+The Legend of Korra,"Animation, Action, Adventure",0,67386,8.6,-1,-1,3,-1,0,8,318,281,15,22
+The IT Crowd,Comedy,0,94670,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Black Books,Comedy,0,41333,8.6,-1,-1,-1,-1,0,8,31,29,1,1
+Mr. Bean,"Comedy, Family",0,64031,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Ghost in the Shell: Stand Alone Complex,"Animation, Action, Crime",0,12347,8.6,-1,-1,-1,-1,0,8,36,31,1,4
+I'm Alan Partridge,Comedy,0,13084,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Hannibal,"Crime, Drama, Horror",0,163087,8.6,70,32,21,8,-1,8,942,847,36,59
+Futurama,"Animation, Comedy, Romance",0,157816,8.5,72,28,22,5,-1,9,218,204,9,5
+Spartacus: War of the Damned,"Action, Adventure, Biography",0,175293,8.6,56,9,4,3,-1,7,156,123,9,24
+Jesus of Nazareth,"Biography, Drama, History",0,13118,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Sons of Anarchy,"Crime, Drama, Thriller",0,185707,8.6,68,23,13,9,-1,8,519,456,24,39
+The People v. O.J. Simpson: American Crime Story,"Biography, Crime, Drama",0,25284,8.5,90,45,43,2,0,8,311,277,12,22
+The Knick,Drama,0,29416,8.6,75,37,28,9,0,8,219,198,7,14
+Silicon Valley,Comedy,0,64030,8.5,84,36,34,2,0,8,390,355,19,16
+Wentworth Prison,"Crime, Drama",0,8241,8.8,65,32,21,9,-1,9,626,576,25,25
+Behzat Ç.: Bir Ankara Polisiyesi,"Crime, Drama, Mystery",0,16699,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Garth Marenghi's Darkplace,Comedy,0,12026,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Permanent Roommates,"Comedy, Romance",0,10904,8.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Police Squad!,"Comedy, Crime",0,10347,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Isler Güçler,Comedy,0,14620,8.7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Community,Comedy,0,148510,8.5,69,23,16,7,0,8,679,638,12,29
+Carnivàle,"Drama, Fantasy, Mystery",0,34101,8.5,65,28,18,9,-1,8,60,55,1,4
+Modern Family,"Comedy, Romance",0,251844,8.5,86,27,27,-1,0,8,603,540,30,33
+X-Men,"Animation, Action, Family",0,24851,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Larry Sanders Show,Comedy,0,4857,8.6,91,15,15,-1,0,6,14,10,1,3
+Scenes from a Marriage,Drama,0,11794,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Jeeves and Wooster,Comedy,0,8108,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Endeavour,"Crime, Drama, Mystery",0,7236,8.6,80,7,7,-1,0,7,29,22,3,4
+Entourage,"Comedy, Drama",0,137378,8.5,68,19,12,6,-1,8,77,71,2,4
+Parasyte: The Maxim,"Animation, Horror, Sci-Fi",0,7493,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+The Walking Dead,"Drama, Horror, Thriller",0,658027,8.6,82,25,23,2,0,8,2395,2,144,225
+The Muppet Show,"Comedy, Family, Music",0,15405,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Utopia,"Drama, Mystery, Sci-Fi",0,25788,8.5,38,4,-1,2,-1,4,33,11,5,17
+Generation War,"Drama, History, War",57,15112,8.5,-1,-1,-1,-1,0,7,13,10,-1,3
+Happy Valley,"Crime, Drama",0,14382,8.5,83,9,9,-1,0,8,83,77,1,5
+Mushi-Shi,"Animation, Drama, Fantasy",0,7760,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Mr. Show with Bob and David,Comedy,0,6881,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Naruto: Shippûden,"Animation, Action, Adventure",0,46406,8.6,-1,-1,-1,-1,0,8,89,78,2,9
+Brigada,"Crime, Drama",0,6733,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Roots,"Drama, History, War",0,11689,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Doctor Who,"Adventure, Drama, Family",0,151514,8.8,70,9,7,2,0,8,520,476,27,17
+Yu Yu Hakusho: Ghost Files,"Animation, Action, Comedy",0,7439,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+My Mad Fat Diary,"Comedy, Drama, Romance",0,10891,8.6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Borgen,Drama,0,11561,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Top Gear,"Comedy, Talk-Show",0,81037,8.8,-1,-1,-1,-1,0,8,64,57,2,5
+Red Dwarf,"Comedy, Sci-Fi",0,25715,8.4,-1,-1,-1,-1,0,8,30,27,1,2
+The Get Down,"Drama, Music, Musical",0,9929,8.6,69,31,20,11,0,7,101,78,6,17
+The Kingdom,"Comedy, Drama, Fantasy",0,13715,8.5,72,12,10,2,0,8,32,27,2,3
+Bleak House,Drama,0,6531,8.5,93,14,14,-1,0,9,58,54,1,3
+24: Live Another Day,"Action, Crime, Drama",0,35237,8.5,70,40,30,10,0,8,135,116,9,10
+Summer Heights High,"Comedy, Drama, Family",0,11330,8.5,67,13,9,3,-1,8,58,52,-1,6
+Hellsing Ultimate,"Animation, Action, Fantasy",0,12440,8.5,-1,-1,-1,-1,0,8,17,15,2,-1
+Trailer Park Boys,"Comedy, Crime, Drama",0,25413,8.5,-1,-1,-1,-1,0,9,50,47,2,1
+Southland,"Crime, Drama, Thriller",0,20837,8.5,69,22,16,5,-1,8,122,107,10,5
+I Love Lucy,"Comedy, Family",0,16968,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Supernatural,"Drama, Fantasy, Horror",0,291984,8.6,59,22,12,4,-1,8,822,753,34,35
+Samurai Jack,"Animation, Action, Adventure",0,26641,8.4,-1,-1,-1,-1,0,8,21,19,-1,2
+The Inbetweeners,Comedy,0,57744,8.4,62,9,5,3,-1,4,38,15,3,20
+Terriers,"Crime, Drama, Mystery",0,8684,8.5,75,24,21,2,-1,8,109,99,8,2
+Fringe,"Drama, Mystery, Sci-Fi",0,181582,8.5,67,25,16,9,0,8,497,431,37,29
+Lost,"Adventure, Drama, Fantasy",0,387136,8.4,86,27,26,1,0,9,737,695,22,20
+M*A*S*H,"Comedy, Drama, War",0,37188,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Prison Break,"Action, Crime, Drama",0,340355,8.5,65,32,21,9,-1,9,626,576,25,25
+Extras,"Comedy, Drama",0,41668,8.4,81,24,21,2,-1,8,85,75,5,5
+BoJack Horseman,"Animation, Comedy, Drama",0,25961,8.4,59,13,6,5,-1,8,420,385,19,16
+Boston Legal,"Comedy, Crime, Drama",0,35314,8.4,69,22,16,5,-1,8,27,23,2,2
+Broad City,Comedy,0,15015,8.5,75,14,12,2,0,8,104,87,5,12
+Star Trek,"Action, Adventure, Mystery",0,52371,8.4,-1,-1,-1,-1,0,8,36,27,8,1
+The League of Gentlemen,"Comedy, Horror",0,6651,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Stargate SG-1,"Action, Adventure, Drama",0,65299,8.4,48,8,2,4,-1,7,105,87,2,16
+Pushing Daisies,"Comedy, Drama, Fantasy",0,45887,8.4,86,30,30,-1,0,8,248,203,22,23
+Scrubs,"Comedy, Drama",0,197348,8.4,79,21,17,3,-1,8,195,182,6,7
+A Bit of Fry and Laurie,Comedy,0,7207,8.4,-1,-1,-1,-1,0,8,11,10,-1,1
+Olive Kitteridge,Drama,0,10754,8.4,89,34,33,1,0,8,106,92,3,11
+The Dick Van Dyke Show,"Comedy, Family",0,6123,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+24,"Action, Crime, Drama",0,148623,8.4,88,27,26,-1,-1,8,216,197,7,12
+Baccano!,"Animation, Action, Adventure",0,6646,8.4,-1,-1,-1,-1,0,8,16,15,-1,1
+Trigun,"Animation, Action, Comedy",0,13938,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Anne of Green Gables,"Drama, Family",0,14658,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Homeland,"Crime, Drama, Mystery",0,235455,8.4,92,29,29,-1,0,8,1037,897,50,90
+Banshee,"Action, Crime, Drama",0,59842,8.4,62,20,9,11,0,8,277,252,16,9
+Broadchurch,"Crime, Drama, Mystery",0,44202,8.4,91,30,29,1,0,8,251,218,10,23
+Dragon Ball Z Kai,"Animation, Action, Adventure",0,13097,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Person of Interest,"Action, Crime, Drama",0,130299,8.5,66,26,14,11,-1,8,423,382,23,18
+Foyle's War,"Crime, Drama, Mystery",0,9220,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+This Is England '88,Drama,0,5505,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+All in the Family,"Comedy, Drama",0,9929,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+My So-Called Life,Drama,0,15752,8.4,92,19,18,1,0,8,14,13,-1,1
+Invader ZIM,"Animation, Comedy, Family",0,15635,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Red vs. Blue: The Blood Gulch Chronicles,"Animation, Action, Adventure",0,7529,8.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Cranford,Drama,0,6766,8.4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+Rectify,Drama,0,16327,8.3,82,28,25,3,0,8,292,266,15,11
+Murder One,"Crime, Drama, Mystery",0,1556,8.1,99,25,25,-1,0,6,18,12,1,5
+The People v. O.J. Simpson: American Crime Story,"Biography, Crime, Drama",0,25284,8.5,90,45,43,2,0,8,311,277,12,22
+Enlightened,"Comedy, Drama",0,5421,7.5,74,22,16,6,0,6,107,64,27,16
+The Americans,"Crime, Drama, Mystery",0,49082,8.3,78,35,30,5,0,8,431,391,18,22
+Homicide,"Action, Drama",0,57,8.0,94,18,18,-1,0,8,19,17,1,1
+Transparent,"Comedy, Drama",0,14797,7.9,92,29,28,1,0,7,223,177,11,35
+The Returned,"Drama, Fantasy, Horror",0,16094,8.3,92,28,28,-1,0,8,265,235,10,20
+The Hollow Crown,"Drama, History",0,3571,8.5,91,7,7,-1,0,6,41,27,3,11
+Master of None,Comedy,0,28034,8.3,91,31,31,-1,0,7,396,308,41,47
+The Corner,"Crime, Drama",0,3496,8.7,90,21,20,1,0,7,9,7,-1,2
+Rescue Me,"Drama, Comedy",0,22502,8.4,86,25,22,3,0,8,28,27,-1,1
+The People v. O.J. Simpson: American Crime Story,"Biography, Crime, Drama",0,25284,8.5,90,45,43,2,0,8,311,277,12,22
+Veep,Comedy,0,26044,8.1,72,30,21,8,-1,7,204,170,15,19
+Orange Is the New Black,"Comedy, Crime, Drama",0,194732,8.3,79,32,28,3,-1,8,762,683,45,34
+The Good Wife,"Crime, Drama, Mystery",0,50248,8.3,75,26,22,4,0,8,228,215,6,7
+Boomtown,"Crime, Drama, Mystery",0,1670,8.2,89,31,29,2,0,7,4,3,-1,1
+Masters of Sex,"Drama, Romance",0,28204,8.0,86,32,29,3,0,7,273,234,12,27
+Everybody Hates Chris,Comedy,0,28067,7.4,88,32,31,1,0,8,194,161,11,22
+The Roosevelts: An Intimate History,Documentary,0,1037,8.9,88,21,21,-1,0,8,24,20,1,3
+Fleabag,Comedy,0,1726,8.1,88,19,19,-1,0,7,76,64,3,9

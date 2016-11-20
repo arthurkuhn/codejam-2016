@@ -18,38 +18,47 @@ def getGenreNum(genre):
         return 4
     if(genre == "Crime"):
         return 5
-    if(genre == "Fantasy"):
+    if(genre == "Documentary"):
         return 6
-    if(genre == "Game-Show"):
+    if(genre == "Drama"):
         return 7
-    if(genre == "History"):
+    if(genre == "Family"):
         return 8
-    if(genre == "Horror"):
+    if(genre == "Fantasy"):
         return 9
-    if(genre == "Music"):
+    if(genre == "Game-Show"):
         return 10
-    if(genre == "Musical"):
+    if(genre == "History"):
         return 11
-    if(genre == "Mystery"):
+    if(genre == "Horror"):
         return 12
-    if(genre == "News"):
+    if(genre == "Music"):
         return 13
-    if(genre == "Reality-TV"):
+    if(genre == "Musical"):
         return 14
-    if(genre == "Romance"):
+    if(genre == "Mystery"):
         return 15
-    if(genre == "Sci-Fi"):
+    if(genre == "News"):
         return 16
-    if(genre == "Sitcom"):
+    if(genre == "Reality-TV"):
         return 17
-    if(genre == "Sports"):
+    if(genre == "Romance"):
         return 18
-    if(genre == "Talk-Show"):
+    if(genre == "Sci-Fi"):
         return 19
-    if(genre == "Thriller"):
+    if(genre == "Sitcom"):
         return 20
-    if(genre == "War"):
+    if(genre == "Sports" or genre == "Sport"):
         return 21
-    if(genre == "Western"):
+    if(genre == "Talk-Show"):
         return 22
+    if(genre == "Thriller"):
+        return 23
+    if(genre == "War"):
+        return 24
+    if(genre == "Western"):
+        return 25
+    
+    
+    
     return -1
