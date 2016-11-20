@@ -130,10 +130,17 @@ textarea:focus, input:focus{
     border:1px solid gray;
     opacity:0.5;
 }
+.movieBtn.full{
+    opacity:1;
+}
 .movieBtn:hover{
     opacity:0.8;
     cursor:pointer;
     border:1px solid #9a9a9a;
+}
+.full:hover{
+    opacity:1;
+    border:1px solid white;
 }
 .movieInput{
     display: none;
