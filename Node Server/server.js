@@ -64,16 +64,16 @@ app.post("/user/:user/movies/set", function(req, res){
     var name = req.params.user;
     var User = mongoose.model("Users");
 
-    var movies = req.params.movies.split(" ");
+    var movies = req.body.movies.split(",");
 
     User.findOne({'name':name}, 'movies', function(err,user){
         user.movies = movies;
         user.save(function(err, user){
-            if(err) return console.error(err);
+            if(err) res.sendStatus(200);
             if(movies < 1){
-                res.write("false");
+                res.sendStatus(400);
             }else{
-                res.write("true");
+                res.sendStatus(200);
             }
 
         });
@@ -89,7 +89,7 @@ app.post("/user/:user/genres/set", function(req, res){
     User.findOne({'name':name}, 'genres', function(err,user){
         user.genres = genres;
         user.save(function(err, user){
-            if(err) res.sendStatus(400);
+            if(err) res.sendStatus(200);
             if(genres < 1){
                 res.sendStatus(400);
             }else{
@@ -186,7 +186,7 @@ function renderMovieList(res, user){
             var mGenres = movies[i].Genre.split(",");
 
             var matchedGenres = 0;
-
+            var checked = false;
             for(var j=0; j < mGenres.length; j++) {
                 var mGenre = mGenres[j].trim().toLowerCase();
                 for (var k = 0; k < user.genres.length; k++) {
@@ -196,7 +196,11 @@ function renderMovieList(res, user){
                     }
                 }
             }
-
+            for(var k = 0; k < user.movies.length; k++){
+                if(user.movies[k].toLowerCase() == movies[i].Title.toLowerCase()){
+                    checked = true;
+                }
+            }
             var prob = matchedGenres/mGenres.length;
             var genreScore = prob*10-(user.genres.length-matchedGenres)*2;
 
@@ -215,6 +219,9 @@ function renderMovieList(res, user){
             //    ratings.push(tomaRating_user);
             //}
             var average = 0;
+
+
+
             if(ratings.length > 0){
                 for(var r=0; r < ratings.length; r++){
                     average+=ratings[r];
@@ -226,17 +233,19 @@ function renderMovieList(res, user){
 
             var score = genreScore + average + popularRating;
 
+            if(checked)
+                score+=30;
 
 
             console.log(movies[i].Title+" "+score);
 
             if(bestMovies.length == 0){
-                bestMovies.push({movie:movies[i], score:score})
+                bestMovies.push({movie:movies[i], score:score, checked:checked})
             }else {
                 var inserted = false;
                 for (var j = 0; j < bestMovies.length; j++) {
                     if (bestMovies[j].score < score) {
-                        bestMovies.splice(j, 0, {movie:movies[i], score:score});
+                        bestMovies.splice(j, 0, {movie:movies[i], score:score, checked:checked});
                         inserted = true;
                         while(bestMovies.length >movieLimit){
                             bestMovies.pop();
@@ -245,7 +254,7 @@ function renderMovieList(res, user){
                     }
                 }
                 if(!inserted && bestMovies.length < movieLimit){
-                    bestMovies.push({movie:movies[i], score:score});
+                    bestMovies.push({movie:movies[i], score:score, checked:checked});
                 }
             }
         }
