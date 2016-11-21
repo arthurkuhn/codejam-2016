@@ -413,8 +413,10 @@ function renderMovieRecommendations(res,user, actorList, genreList){
                 Movie.find({"Kmeans": index}, null, {}, function (req, movies1) {
 
                     var rMovies = [];
-
+                    var dNum = 0;
                     for(var r =0; r < 5; r++){
+                        if(dNum > 10)
+                            break;
                         var num = Math.random() * movies1.length;
                         var dupe = false;
                         for(var j=0; j < rMovies.length; j++){
@@ -422,8 +424,14 @@ function renderMovieRecommendations(res,user, actorList, genreList){
                                 dupe = true;
                             }
                         }
+                        for(var j=0; j < user.movies.length; j++){
+                            if(user.movies[j] == movies1[Math.floor(num)].Title){
+                                dupe = true;
+                            }
+                        }
                         if(dupe){
                             r--;
+                            dNum++;
                         }else{
                             var mv = movies1[Math.floor(num)];
                             rMovies.push(mv);
