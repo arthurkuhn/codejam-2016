@@ -20,9 +20,9 @@ class Model(object):
         data = scale(X)
         n_samples, n_features = data.shape
         num_classes = 3
-        reduced_data = PCA(n_components=2).fit_transform(data)
+        #reduced_data = PCA(n_components=2).fit_transform(data)
         estimator = KMeans(init='k-means++', n_clusters=num_classes, n_init=10)
-        self.model = estimator.fit(reduced_data)
+        self.model = estimator.fit(data)
 
     def predict(self,row):
         return self.model.predict(row)

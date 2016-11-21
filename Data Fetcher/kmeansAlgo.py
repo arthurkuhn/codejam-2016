@@ -17,7 +17,7 @@ class Model(object):
     def __init__(self):
         X = np.genfromtxt("C:\\Users\\Arthur\\Documents\\GitHub\\codejam\\Data Fetcher\\forAlgo.csv",delimiter=',')
         np.random.seed(10)
-        data = scale(X)
+        data = X
         n_samples, n_features = data.shape
         num_classes = 10
         #No PCA was used

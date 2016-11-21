@@ -6,6 +6,8 @@ import importHelper
 import scraper
 from kmeansAlgo import Model
 import genres_constant
+from sklearn.preprocessing import scale
+from sklearn.decomposition import PCA
 import numpy as np
 
 
@@ -69,9 +71,9 @@ def main():
         to_pred.append(show["userneg"])
         
         
-        algoData = np.asarray(to_pred).reshape(1, -1)
-        res = mod.predict(algoData)
-        print(res)
+        algoData = np.asarray(to_pred)
+        data = algoData.reshape(1,-1)
+        res = mod.predict(data)
         show["Kmeans"] = int(res[0])
         
         if(counter == 0):
