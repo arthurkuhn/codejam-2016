@@ -9,6 +9,8 @@ Instructions to install and run the server are in the folder's readme.
 The website will ask for a name, a few genres and some tv shows that the user watched and liked.
 It will then recommend new TV Shows to watch based on a recommendation algorithm.
 
+Users are saved by name and if a user comes back to the website he will get recommendations directly with the possibility of changing his genre choices / liked tv shows choices.
+
 
 ## Recommendation Algorithm
 
