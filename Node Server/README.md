@@ -4,7 +4,7 @@ Node server hosting a recommendation engine
 
 ## Requirements
 
-- [Node and npm](http://nodejs.org)
+- [Node and npm](http://nodejs.org) version 6.9 (recommended)
 - MongoDB: our own remote MongoDB database URI is configured in `config/database.js` don't change it :)
 
 ## Installation
