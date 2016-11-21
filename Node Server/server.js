@@ -9,7 +9,6 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-var PythonShell = require('python-shell');
 
 var genres = ["Action", "Adventure", "Animation",
     "Biography", "Comedy", "Crime","Documentary","Drama","Family" , "Fantasy",
@@ -396,27 +395,46 @@ function renderMovieRecommendations(res,user, actorList, genreList){
    // console.log(genreNums);
     var Movie = mongoose.model("Movie");
 
-    pyshell = new PythonShell("getMovies.py", {mode:"text"});
-    pyshell.send(genreNums).send(user.movies);
-    pyshell.on("message", function(data){
-        if(data) {
-            var movies = data.replace(/'/g, "").replace("[", "").replace("]", "").split(",");
-            for(var i=0; i < movies.length; i++){
-                movies[i] = movies[i].trim();
-            }
-            Movie.find({"Title": {$in: movies}}, null, {}, function (req, movies1) {
-                console.log(movies1.length);
-                res.render('pages/showUser.ejs', {
-                    user: user,
-                    movieList: movies1
+            Movie.find({"Title": {$in: user.movies}}, null, {}, function (req, movies1) {
+                var cats = [0,0,0,0,0,0,0,0,0,0];
+                for(var i=0; i < movies1.length; i++){
+                    var kmen = movies1[i].Kmeans;
+                    cats[kmen]++;
+                }
+
+                var index=0;
+
+                for(var i=0; i < cats.length; i++){
+                    if(cats[i] > cats[index]){
+                        index = i;
+                    }
+                }
+                console.log("best k is "+index);
+                Movie.find({"Kmeans": index}, null, {}, function (req, movies1) {
+
+                    var rMovies = [];
+
+                    for(var r =0; r < 5; r++){
+                        var num = Math.random() * movies1.length;
+                        var dupe = false;
+                        for(var j=0; j < rMovies.length; j++){
+                            if(rMovies[j].Title == movies1[Math.floor(num)].Title){
+                                dupe = true;
+                            }
+                        }
+                        if(dupe){
+                            r--;
+                        }else{
+                            var mv = movies1[Math.floor(num)];
+                            rMovies.push(mv);
+                        }
+                    }
+
+                    res.render('pages/showUser.ejs', {
+                        user: user,
+                        movieList: rMovies
+                    });
                 });
-            });
-        }
-        console.log("python: "+data)
-    });
-    pyshell.end(function (err) {
-        if (err) throw err;
-        console.log('finished');
     });
 }
 
